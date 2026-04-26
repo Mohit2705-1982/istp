@@ -1,0 +1,1868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISTP Report | Archiving Cultural Practices of Himachal Pradesh | IIT Mandi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6B3F1F;
+            --secondary: #A0522D;
+            --accent: #C8860A;
+            --gold: #D4AF37;
+            --cream: #FDF6E3;
+            --light-cream: #FAF0DC;
+            --dark-cream: #EDD9A3;
+            --text-dark: #2C1A0E;
+            --text-mid: #4A2C1A;
+            --text-light: #7A5C3A;
+            --white: #FFFFFF;
+            --shadow: rgba(107, 63, 31, 0.15);
+            --shadow-deep: rgba(107, 63, 31, 0.35);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background-color: var(--cream);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--cream); }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 4px; }
+
+        /* LOADER */
+        #loader {
+            position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: var(--primary);
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+        #loader.hidden { opacity: 0; visibility: hidden; }
+        .loader-mandala {
+            width: 80px; height: 80px;
+            border: 3px solid var(--gold);
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        .loader-text { color: var(--gold); font-family: 'Cinzel', serif; font-size: 1rem; margin-top: 20px; letter-spacing: 3px; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* NAVBAR */
+        nav {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            background: rgba(44, 26, 14, 0.97);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--gold);
+            transition: all 0.3s ease;
+        }
+        .nav-inner {
+            max-width: 1400px; margin: 0 auto; padding: 0 30px;
+            display: flex; justify-content: space-between; align-items: center; height: 70px;
+        }
+        .nav-logo { display: flex; align-items: center; gap: 12px; }
+        .nav-logo-icon {
+            width: 42px; height: 42px;
+            background: linear-gradient(135deg, var(--gold), var(--accent));
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem; color: var(--text-dark);
+        }
+        .nav-logo-text { color: var(--cream); font-family: 'Cinzel', serif; font-size: 0.85rem; line-height: 1.3; }
+        .nav-logo-text span { color: var(--gold); display: block; font-size: 0.7rem; letter-spacing: 2px; }
+        .nav-links { display: flex; list-style: none; gap: 5px; }
+        .nav-links a {
+            color: var(--dark-cream); text-decoration: none;
+            font-family: 'Lato', sans-serif; font-size: 0.78rem; font-weight: 400;
+            letter-spacing: 1px; padding: 6px 12px; border-radius: 3px;
+            transition: all 0.3s; text-transform: uppercase;
+        }
+        .nav-links a:hover { color: var(--gold); background: rgba(212, 175, 55, 0.1); }
+        .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 5px; }
+        .hamburger span { width: 25px; height: 2px; background: var(--gold); transition: 0.3s; }
+        .mobile-menu {
+            display: none; position: fixed; top: 70px; left: 0; width: 100%;
+            background: rgba(44, 26, 14, 0.98); padding: 20px; z-index: 999;
+            border-bottom: 1px solid var(--gold);
+        }
+        .mobile-menu.active { display: block; }
+        .mobile-menu a {
+            display: block; color: var(--cream); text-decoration: none;
+            font-family: 'Lato', sans-serif; font-size: 0.9rem; padding: 12px 0;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2); letter-spacing: 1px;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh; position: relative;
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden;
+            background: linear-gradient(160deg, #1A0A03 0%, #3B1F0A 40%, #6B3F1F 80%, #8B5A2B 100%);
+        }
+        .hero-particles { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; }
+        .particle {
+            position: absolute; border-radius: 50%;
+            background: rgba(212, 175, 55, 0.15);
+            animation: float-particle linear infinite;
+        }
+        @keyframes float-particle {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; } 90% { opacity: 1; }
+            100% { transform: translateY(-100px) rotate(720deg); opacity: 0; }
+        }
+        .hero-mandala {
+            position: absolute; width: 700px; height: 700px;
+            border: 1px solid rgba(212, 175, 55, 0.08); border-radius: 50%;
+            top: 50%; left: 50%; transform: translate(-50%, -50%);
+            animation: rotate-slow 60s linear infinite;
+        }
+        .hero-mandala::before {
+            content: ''; position: absolute; width: 550px; height: 550px;
+            border: 1px solid rgba(212, 175, 55, 0.1); border-radius: 50%;
+            top: 50%; left: 50%; transform: translate(-50%, -50%);
+        }
+        .hero-mandala::after {
+            content: ''; position: absolute; width: 400px; height: 400px;
+            border: 1px solid rgba(212, 175, 55, 0.12); border-radius: 50%;
+            top: 50%; left: 50%; transform: translate(-50%, -50%);
+        }
+        @keyframes rotate-slow { to { transform: translate(-50%, -50%) rotate(360deg); } }
+        .hero-ornament {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4AF37' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .hero-content {
+            position: relative; z-index: 10; text-align: center;
+            padding: 0 20px; max-width: 1000px;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.15);
+            border: 1px solid var(--gold); color: var(--gold);
+            font-family: 'Lato', sans-serif; font-size: 0.7rem;
+            letter-spacing: 4px; padding: 6px 20px; margin-bottom: 30px; text-transform: uppercase;
+        }
+        .hero-title {
+            font-family: 'Cinzel', serif; font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 700; color: var(--cream); line-height: 1.2;
+            margin-bottom: 20px; text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+        }
+        .hero-title span { color: var(--gold); display: block; }
+        .hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.4rem); color: rgba(253, 246, 227, 0.75);
+            font-style: italic; margin-bottom: 40px; line-height: 1.6;
+        }
+        .hero-divider { display: flex; align-items: center; justify-content: center; gap: 15px; margin: 30px auto; }
+        .hero-divider-line { width: 100px; height: 1px; background: linear-gradient(to right, transparent, var(--gold)); }
+        .hero-divider-line.reverse { background: linear-gradient(to left, transparent, var(--gold)); }
+        .hero-divider-icon { color: var(--gold); font-size: 1.2rem; }
+        .hero-meta { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-bottom: 50px; }
+        .hero-meta-item { text-align: center; }
+        .hero-meta-label { display: block; font-family: 'Lato', sans-serif; font-size: 0.65rem; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; margin-bottom: 4px; }
+        .hero-meta-value { color: var(--cream); font-size: 0.95rem; }
+        .hero-cta { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), var(--gold));
+            color: var(--text-dark); border: none; padding: 14px 35px;
+            font-family: 'Cinzel', serif; font-size: 0.85rem; letter-spacing: 2px;
+            cursor: pointer; text-decoration: none; display: inline-block; font-weight: 600;
+            transition: all 0.3s;
+            clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4); }
+        .btn-secondary {
+            background: transparent; color: var(--cream);
+            border: 1px solid rgba(253, 246, 227, 0.4); padding: 14px 35px;
+            font-family: 'Cinzel', serif; font-size: 0.85rem; letter-spacing: 2px;
+            cursor: pointer; text-decoration: none; display: inline-block; transition: all 0.3s;
+        }
+        .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+        .hero-scroll {
+            position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
+            display: flex; flex-direction: column; align-items: center; gap: 8px;
+            color: rgba(253, 246, 227, 0.5); font-family: 'Lato', sans-serif;
+            font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase;
+        }
+        .scroll-line {
+            width: 1px; height: 40px;
+            background: linear-gradient(to bottom, var(--gold), transparent);
+            animation: scroll-anim 2s ease-in-out infinite;
+        }
+        @keyframes scroll-anim { 0%, 100% { opacity: 1; transform: scaleY(1); } 50% { opacity: 0.4; transform: scaleY(0.7); } }
+
+        /* SECTIONS */
+        section { padding: 100px 0; }
+        .container { max-width: 1300px; margin: 0 auto; padding: 0 40px; }
+        .section-header { text-align: center; margin-bottom: 70px; }
+        .section-tag { display: inline-block; font-family: 'Lato', sans-serif; font-size: 0.65rem; letter-spacing: 5px; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+        .section-title { font-family: 'Cinzel', serif; font-size: clamp(1.8rem, 4vw, 2.8rem); color: var(--primary); margin-bottom: 15px; line-height: 1.2; }
+        .section-subtitle { font-size: 1.1rem; color: var(--text-light); font-style: italic; max-width: 600px; margin: 0 auto; line-height: 1.7; }
+        .section-ornament { display: flex; align-items: center; justify-content: center; gap: 15px; margin-top: 20px; }
+        .ornament-line { width: 60px; height: 1px; background: var(--gold); }
+        .ornament-diamond { width: 8px; height: 8px; background: var(--gold); transform: rotate(45deg); }
+
+        /* ABOUT */
+        .about-section { background: var(--cream); }
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .about-text h3 { font-family: 'Cinzel', serif; font-size: 1.6rem; color: var(--primary); margin-bottom: 20px; }
+        .about-text p { font-size: 1.05rem; line-height: 1.9; color: var(--text-mid); margin-bottom: 20px; }
+        .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .stat-card { background: var(--light-cream); border: 1px solid var(--dark-cream); border-left: 3px solid var(--gold); padding: 20px; text-align: center; }
+        .stat-number { font-family: 'Cinzel', serif; font-size: 2.2rem; color: var(--primary); font-weight: 700; }
+        .stat-label { font-family: 'Lato', sans-serif; font-size: 0.75rem; color: var(--text-light); letter-spacing: 1px; text-transform: uppercase; margin-top: 5px; }
+        .keywords-box { background: var(--light-cream); border: 1px solid var(--dark-cream); padding: 25px; margin-top: 30px; }
+        .keywords-box h4 { font-family: 'Cinzel', serif; font-size: 0.85rem; color: var(--primary); letter-spacing: 2px; margin-bottom: 12px; text-transform: uppercase; }
+        .keyword-tag { display: inline-block; background: var(--primary); color: var(--cream); padding: 4px 12px; font-family: 'Lato', sans-serif; font-size: 0.75rem; margin: 3px; border-radius: 2px; }
+        .about-image-side { position: relative; }
+        .about-image-frame { position: relative; border: 2px solid var(--gold); padding: 10px; }
+        .about-image-frame::before {
+            content: ''; position: absolute; top: -10px; left: -10px; right: 10px; bottom: 10px;
+            border: 1px solid var(--dark-cream); z-index: -1;
+        }
+        .about-image-placeholder {
+            width: 100%; height: 400px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            color: var(--cream); font-family: 'Cinzel', serif;
+        }
+        .about-image-placeholder i { font-size: 3rem; color: var(--gold); margin-bottom: 10px; }
+
+        /* TEAM */
+        .team-section { background: linear-gradient(180deg, var(--light-cream) 0%, var(--cream) 100%); }
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 25px; margin-bottom: 50px; }
+        .team-card {
+            background: var(--white); border: 1px solid var(--dark-cream);
+            padding: 30px 20px; text-align: center; transition: all 0.3s;
+            position: relative; overflow: hidden;
+        }
+        .team-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(to right, var(--primary), var(--gold)); }
+        .team-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px var(--shadow); }
+        .team-avatar { width: 70px; height: 70px; background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 50%; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; color: var(--gold); font-size: 1.5rem; }
+        .team-name { font-family: 'Cinzel', serif; font-size: 0.85rem; color: var(--primary); margin-bottom: 5px; }
+        .team-roll { font-family: 'Lato', sans-serif; font-size: 0.7rem; color: var(--text-light); letter-spacing: 1px; }
+        .mentor-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .mentor-card { background: var(--primary); color: var(--cream); padding: 30px; display: flex; align-items: center; gap: 20px; }
+        .mentor-icon { width: 60px; height: 60px; background: rgba(212, 175, 55, 0.2); border: 1px solid var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--gold); font-size: 1.3rem; flex-shrink: 0; }
+        .mentor-info h4 { font-family: 'Cinzel', serif; font-size: 0.75rem; color: var(--gold); letter-spacing: 2px; margin-bottom: 5px; }
+        .mentor-info p { font-size: 1rem; color: var(--cream); }
+        .mentor-info span { font-family: 'Lato', sans-serif; font-size: 0.75rem; color: rgba(253, 246, 227, 0.6); }
+
+        /* LOCATIONS */
+        .locations-section { background: var(--text-dark); color: var(--cream); }
+        .locations-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .location-card { position: relative; overflow: hidden; border: 1px solid rgba(212, 175, 55, 0.3); }
+        .location-img { height: 250px; position: relative; overflow: hidden; }
+        .location-img-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; flex-direction: column; color: var(--cream); font-family: 'Cinzel', serif; font-size: 1.1rem; }
+        .location-img-placeholder.mandi { background: linear-gradient(135deg, #3B1F0A, #6B3F1F); }
+        .location-img-placeholder.dharamshala { background: linear-gradient(135deg, #1A3A4A, #2E6B8A); }
+        .location-img-placeholder.rewalsar { background: linear-gradient(135deg, #1A3A1A, #2E6B3A); }
+        .location-img-placeholder i { font-size: 3rem; margin-bottom: 10px; }
+        .location-overlay { position: absolute; bottom: 0; left: 0; width: 100%; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); padding: 30px 25px 20px; }
+        .location-tag { font-family: 'Lato', sans-serif; font-size: 0.65rem; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; }
+        .location-name { font-family: 'Cinzel', serif; font-size: 1.4rem; color: var(--cream); }
+        .location-body { padding: 25px; }
+        .location-desc { font-size: 0.92rem; line-height: 1.8; color: rgba(253, 246, 227, 0.75); margin-bottom: 20px; }
+        .location-sites { display: flex; flex-wrap: wrap; gap: 8px; }
+        .site-chip { background: rgba(212, 175, 55, 0.1); border: 1px solid rgba(212, 175, 55, 0.3); color: var(--gold); padding: 4px 12px; font-family: 'Lato', sans-serif; font-size: 0.7rem; letter-spacing: 1px; }
+        .visit-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(212, 175, 55, 0.15); border: 1px solid var(--gold);
+            color: var(--gold); font-family: 'Lato', sans-serif;
+            font-size: 0.65rem; letter-spacing: 3px; padding: 5px 15px;
+            text-transform: uppercase; margin-bottom: 15px;
+        }
+
+        /* TEMPLES */
+        .temples-section { background: var(--cream); }
+        .temple-tabs { display: flex; gap: 5px; margin-bottom: 40px; flex-wrap: wrap; border-bottom: 1px solid var(--dark-cream); }
+        .temple-tab { padding: 10px 20px; background: none; border: none; font-family: 'Cinzel', serif; font-size: 0.8rem; color: var(--text-light); cursor: pointer; letter-spacing: 1px; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: all 0.3s; }
+        .temple-tab.active, .temple-tab:hover { color: var(--primary); border-bottom-color: var(--gold); }
+        .temple-content { display: none; }
+        .temple-content.active { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: start; }
+        .temple-image-block { position: relative; }
+        .temple-img-placeholder { width: 100%; height: 350px; display: flex; align-items: center; justify-content: center; flex-direction: column; font-family: 'Cinzel', serif; color: var(--cream); font-size: 1rem; gap: 15px; position: relative; overflow: hidden; }
+        .temple-img-placeholder i { font-size: 3rem; color: var(--gold); }
+        .t1 { background: linear-gradient(135deg, #4A1C00, #8B3A0A); }
+        .t2 { background: linear-gradient(135deg, #1A1A3E, #2D2D7A); }
+        .t3 { background: linear-gradient(135deg, #2A1A00, #5C3A0A); }
+        .t4 { background: linear-gradient(135deg, #0A2A1A, #1A5C3A); }
+        .t5 { background: linear-gradient(135deg, #2A0A1A, #5C1A3A); }
+        .t6 { background: linear-gradient(135deg, #1A2A0A, #3A5C1A); }
+        .t7 { background: linear-gradient(135deg, #1A0A2A, #3A1A5C); }
+        .t8 { background: linear-gradient(135deg, #2A1A1A, #5C3A3A); }
+        .img-caption { position: absolute; bottom: 0; left: 0; width: 100%; background: rgba(0,0,0,0.6); color: var(--gold); font-family: 'Lato', sans-serif; font-size: 0.7rem; padding: 8px 15px; letter-spacing: 1px; }
+        .temple-info h3 { font-family: 'Cinzel', serif; font-size: 1.6rem; color: var(--primary); margin-bottom: 5px; }
+        .temple-info .temple-subtitle { font-family: 'Lato', sans-serif; font-size: 0.75rem; color: var(--accent); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; }
+        .temple-info p { font-size: 1rem; line-height: 1.9; color: var(--text-mid); margin-bottom: 15px; }
+        .temple-facts { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+        .fact-item { background: var(--light-cream); border-left: 2px solid var(--gold); padding: 10px 15px; }
+        .fact-label { font-family: 'Lato', sans-serif; font-size: 0.65rem; color: var(--accent); letter-spacing: 2px; text-transform: uppercase; }
+        .fact-value { font-size: 0.95rem; color: var(--text-dark); font-weight: 500; }
+
+        /* TIBETAN CULTURE */
+        .tibetan-section { background: linear-gradient(180deg, #1A0E05 0%, #2C1A0E 100%); color: var(--cream); }
+        .tibetan-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 50px; }
+        .tibetan-card { background: rgba(253, 246, 227, 0.05); border: 1px solid rgba(212, 175, 55, 0.2); padding: 35px 25px; transition: all 0.3s; position: relative; overflow: hidden; }
+        .tibetan-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: linear-gradient(to bottom, var(--gold), transparent); }
+        .tibetan-card:hover { background: rgba(253, 246, 227, 0.08); transform: translateY(-3px); }
+        .tibetan-card-icon { font-size: 2rem; color: var(--gold); margin-bottom: 15px; }
+        .tibetan-card h4 { font-family: 'Cinzel', serif; font-size: 1.1rem; color: var(--cream); margin-bottom: 15px; }
+        .tibetan-card ul { list-style: none; margin-top: 10px; }
+        .tibetan-card ul li { font-size: 0.88rem; color: rgba(253, 246, 227, 0.7); padding: 5px 0; border-bottom: 1px solid rgba(212, 175, 55, 0.1); padding-left: 15px; position: relative; line-height: 1.6; }
+        .tibetan-card ul li::before { content: '◆'; position: absolute; left: 0; color: var(--gold); font-size: 0.5rem; top: 9px; }
+
+        /* MEDICINE */
+        .medicine-section { background: var(--light-cream); }
+        .medicine-layout { display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px; align-items: center; }
+        .medicine-blocks { display: flex; flex-direction: column; gap: 20px; }
+        .medicine-block { background: var(--white); border: 1px solid var(--dark-cream); padding: 25px; display: flex; gap: 20px; transition: all 0.3s; }
+        .medicine-block:hover { box-shadow: 0 5px 20px var(--shadow); transform: translateX(5px); }
+        .medicine-block-icon { width: 50px; height: 50px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--gold); font-size: 1.2rem; flex-shrink: 0; }
+        .medicine-block-text h4 { font-family: 'Cinzel', serif; font-size: 1rem; color: var(--primary); margin-bottom: 8px; }
+        .medicine-block-text p { font-size: 0.9rem; line-height: 1.7; color: var(--text-mid); }
+        .medicine-visual { background: linear-gradient(135deg, #0A2A1A, #1A5C3A); padding: 40px; color: var(--cream); }
+        .medicine-visual h3 { font-family: 'Cinzel', serif; font-size: 1.5rem; color: var(--gold); margin-bottom: 25px; }
+        .three-humors { display: flex; flex-direction: column; gap: 15px; }
+        .humor-item { display: flex; align-items: center; gap: 15px; padding: 15px; background: rgba(255,255,255,0.05); border: 1px solid rgba(212, 175, 55, 0.2); }
+        .humor-icon { width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
+        .humor-wind { background: rgba(135, 206, 235, 0.3); color: #87ceeb; }
+        .humor-fire { background: rgba(255, 100, 0, 0.3); color: #ff6400; }
+        .humor-earth { background: rgba(101, 67, 33, 0.5); color: #c8a96e; }
+        .humor-info h5 { font-family: 'Cinzel', serif; font-size: 0.9rem; color: var(--gold); }
+        .humor-info p { font-size: 0.8rem; color: rgba(253, 246, 227, 0.7); margin-top: 3px; }
+
+        /* METHODOLOGY */
+        .method-section { background: var(--cream); }
+        .method-timeline { position: relative; max-width: 900px; margin: 0 auto; }
+        .method-timeline::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: linear-gradient(to bottom, var(--gold), transparent); transform: translateX(-50%); }
+        .timeline-item { display: grid; grid-template-columns: 1fr 60px 1fr; gap: 0; margin-bottom: 40px; align-items: start; }
+        .timeline-content { background: var(--white); border: 1px solid var(--dark-cream); padding: 25px; }
+        .timeline-content h4 { font-family: 'Cinzel', serif; font-size: 1rem; color: var(--primary); margin-bottom: 8px; }
+        .timeline-content p { font-size: 0.88rem; line-height: 1.7; color: var(--text-mid); }
+        .timeline-content.left { text-align: right; }
+        .timeline-content.right { text-align: left; }
+        .timeline-center { display: flex; justify-content: center; align-items: flex-start; padding-top: 20px; }
+        .timeline-dot { width: 20px; height: 20px; background: var(--gold); border-radius: 50%; border: 3px solid var(--cream); box-shadow: 0 0 0 1px var(--gold); }
+        .timeline-empty { background: transparent; border: none; padding: 25px; }
+
+        /* REWALSAR */
+        .rewalsar-section { background: linear-gradient(160deg, #0A1A2A 0%, #1A3A4A 100%); color: var(--cream); }
+        .rewalsar-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .rewalsar-text h3 { font-family: 'Cinzel', serif; font-size: 1.8rem; color: var(--gold); margin-bottom: 20px; }
+        .rewalsar-text p { font-size: 1rem; line-height: 1.9; color: rgba(253, 246, 227, 0.8); margin-bottom: 15px; }
+        .rewalsar-features { display: flex; flex-direction: column; gap: 15px; margin-top: 25px; }
+        .rewalsar-feature { display: flex; gap: 15px; align-items: flex-start; padding: 15px; background: rgba(255,255,255,0.04); border: 1px solid rgba(212, 175, 55, 0.15); }
+        .rewalsar-feature i { color: var(--gold); font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
+        .rewalsar-feature p { font-size: 0.88rem; margin: 0; line-height: 1.6; }
+        .rewalsar-highlights { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 30px; }
+        .rewalsar-highlight-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(212,175,55,0.2); padding: 15px; text-align: center; }
+        .rewalsar-highlight-card i { color: var(--gold); font-size: 1.4rem; margin-bottom: 8px; display: block; }
+        .rewalsar-highlight-card p { font-size: 0.8rem; color: rgba(253,246,227,0.7); line-height: 1.5; }
+        .rewalsar-img-placeholder { width: 100%; height: 420px; background: linear-gradient(135deg, #1A3A1A, #2E6B3A); display: flex; align-items: center; justify-content: center; flex-direction: column; color: var(--cream); font-family: 'Cinzel', serif; border: 1px solid rgba(212, 175, 55, 0.3); gap: 15px; }
+        .rewalsar-img-placeholder i { font-size: 4rem; color: var(--gold); }
+
+        /* FINDINGS */
+        .findings-section { background: var(--text-dark); color: var(--cream); }
+        .findings-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
+        .finding-card { background: rgba(253, 246, 227, 0.04); border: 1px solid rgba(212, 175, 55, 0.2); padding: 35px; }
+        .finding-number { font-family: 'Cinzel', serif; font-size: 3rem; color: rgba(212, 175, 55, 0.2); line-height: 1; margin-bottom: 5px; }
+        .finding-card h4 { font-family: 'Cinzel', serif; font-size: 1.1rem; color: var(--gold); margin-bottom: 15px; }
+        .finding-card p { font-size: 0.9rem; line-height: 1.8; color: rgba(253, 246, 227, 0.7); }
+
+        /* QUESTIONNAIRE */
+        .questionnaire-section { background: var(--light-cream); }
+        .q-accordion { max-width: 900px; margin: 0 auto; }
+        .q-item { border: 1px solid var(--dark-cream); margin-bottom: 10px; overflow: hidden; }
+        .q-header { padding: 20px 25px; background: var(--white); cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s; }
+        .q-header:hover { background: var(--light-cream); }
+        .q-header.active { background: var(--primary); color: var(--cream); }
+        .q-header h4 { font-family: 'Cinzel', serif; font-size: 0.95rem; color: inherit; }
+        .q-header i { color: var(--gold); transition: transform 0.3s; }
+        .q-header.active i { transform: rotate(180deg); }
+        .q-body { display: none; padding: 25px; background: var(--white); border-top: 1px solid var(--dark-cream); }
+        .q-body.open { display: block; }
+        .q-body ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .q-body ul li { font-size: 0.88rem; color: var(--text-mid); padding: 8px 12px; background: var(--light-cream); border-left: 2px solid var(--accent); line-height: 1.5; }
+
+        /* SURVEY / TABLES */
+        .survey-section { background: var(--cream); }
+        .table-container { overflow-x: auto; margin-bottom: 40px; }
+        .survey-table { width: 100%; border-collapse: collapse; font-family: 'Lato', sans-serif; font-size: 0.85rem; }
+        .survey-table thead { background: var(--primary); color: var(--cream); }
+        .survey-table th { padding: 15px 20px; text-align: left; font-weight: 600; letter-spacing: 0.5px; font-size: 0.8rem; }
+        .survey-table th:first-child { min-width: 250px; }
+        .survey-table tbody tr { border-bottom: 1px solid var(--dark-cream); transition: background 0.2s; }
+        .survey-table tbody tr:nth-child(even) { background: var(--light-cream); }
+        .survey-table tbody tr:hover { background: rgba(212, 175, 55, 0.1); }
+        .survey-table td { padding: 14px 20px; color: var(--text-mid); line-height: 1.5; }
+        .survey-table td:first-child { color: var(--text-dark); font-style: italic; }
+        .score-high { color: #2a7a2a; font-weight: 700; }
+        .score-mid { color: #8B5A2B; font-weight: 700; }
+        .score-low { color: #8B0000; font-weight: 700; }
+        .table-caption { font-family: 'Lato', sans-serif; font-size: 0.75rem; color: var(--text-light); text-align: center; margin-top: 10px; font-style: italic; }
+
+        /* RECOMMENDATIONS */
+        .recommendations-section { background: var(--cream); }
+        .rec-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .rec-card { background: var(--white); border: 1px solid var(--dark-cream); padding: 35px 25px; text-align: center; transition: all 0.3s; position: relative; }
+        .rec-card::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--gold); transition: width 0.4s; }
+        .rec-card:hover::after { width: 100%; }
+        .rec-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px var(--shadow); }
+        .rec-icon { width: 70px; height: 70px; background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--gold); font-size: 1.6rem; margin: 0 auto 20px; }
+        .rec-card h4 { font-family: 'Cinzel', serif; font-size: 1rem; color: var(--primary); margin-bottom: 15px; }
+        .rec-card p { font-size: 0.88rem; line-height: 1.8; color: var(--text-mid); }
+
+        /* CONCLUSION */
+        .conclusion-section { background: linear-gradient(160deg, var(--primary) 0%, #4A2C0A 100%); color: var(--cream); text-align: center; }
+        .conclusion-inner { max-width: 800px; margin: 0 auto; }
+        .conclusion-inner h2 { font-family: 'Cinzel', serif; font-size: clamp(1.8rem, 4vw, 2.5rem); color: var(--gold); margin-bottom: 30px; }
+        .conclusion-inner p { font-size: 1.1rem; line-height: 1.9; color: rgba(253, 246, 227, 0.85); margin-bottom: 20px; }
+        .conclusion-quote { border-left: 3px solid var(--gold); padding: 20px 30px; text-align: left; margin: 40px 0; background: rgba(212, 175, 55, 0.08); }
+        .conclusion-quote p { font-style: italic; font-size: 1.15rem; }
+        .conclusion-quote cite { font-family: 'Lato', sans-serif; font-size: 0.75rem; color: var(--gold); letter-spacing: 2px; display: block; margin-top: 10px; }
+
+        /* FOOTER */
+        footer { background: var(--text-dark); color: var(--cream); padding: 60px 0 30px; }
+        .footer-inner { max-width: 1300px; margin: 0 auto; padding: 0 40px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 50px; margin-bottom: 40px; }
+        .footer-brand h3 { font-family: 'Cinzel', serif; font-size: 1.2rem; color: var(--gold); margin-bottom: 15px; }
+        .footer-brand p { font-size: 0.88rem; line-height: 1.8; color: rgba(253, 246, 227, 0.6); }
+        .footer-links h4 { font-family: 'Cinzel', serif; font-size: 0.85rem; color: var(--gold); letter-spacing: 2px; margin-bottom: 15px; text-transform: uppercase; }
+        .footer-links ul { list-style: none; }
+        .footer-links ul li { margin-bottom: 8px; }
+        .footer-links ul li a { color: rgba(253, 246, 227, 0.6); text-decoration: none; font-family: 'Lato', sans-serif; font-size: 0.82rem; transition: color 0.3s; }
+        .footer-links ul li a:hover { color: var(--gold); }
+        .footer-bottom { border-top: 1px solid rgba(212, 175, 55, 0.2); padding-top: 25px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .footer-bottom p { font-family: 'Lato', sans-serif; font-size: 0.75rem; color: rgba(253, 246, 227, 0.4); }
+        .footer-logo-mark { display: flex; align-items: center; gap: 10px; color: rgba(212, 175, 55, 0.5); font-family: 'Cinzel', serif; font-size: 0.75rem; }
+
+        /* SCROLL TOP */
+        #scrollTop { position: fixed; bottom: 30px; right: 30px; width: 45px; height: 45px; background: var(--primary); border: 1px solid var(--gold); color: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; opacity: 0; visibility: hidden; transition: all 0.3s; z-index: 999; font-size: 1rem; }
+        #scrollTop.visible { opacity: 1; visibility: visible; }
+        #scrollTop:hover { background: var(--gold); color: var(--text-dark); }
+
+        /* ANIMATIONS */
+        .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+        .slide-left { opacity: 0; transform: translateX(-40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .slide-left.visible { opacity: 1; transform: translateX(0); }
+        .slide-right { opacity: 0; transform: translateX(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .slide-right.visible { opacity: 1; transform: translateX(0); }
+
+        /* RESPONSIVE */
+        @media (max-width: 1100px) {
+            .locations-grid { grid-template-columns: 1fr 1fr; }
+            .tibetan-grid { grid-template-columns: 1fr 1fr; }
+            .rec-grid { grid-template-columns: 1fr 1fr; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            .hero-title { font-size: 2rem; }
+            .about-grid { grid-template-columns: 1fr; }
+            .locations-grid { grid-template-columns: 1fr; }
+            .temple-content.active { grid-template-columns: 1fr; }
+            .tibetan-grid { grid-template-columns: 1fr; }
+            .medicine-layout { grid-template-columns: 1fr; }
+            .findings-grid { grid-template-columns: 1fr; }
+            .rec-grid { grid-template-columns: 1fr; }
+            .rewalsar-layout { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .hero-meta { gap: 15px; }
+            .method-timeline::before { left: 20px; }
+            .timeline-item { grid-template-columns: 0 40px 1fr; }
+            .timeline-content.left { display: none; }
+            .timeline-empty { display: none; }
+            .q-body ul { grid-template-columns: 1fr; }
+            .container { padding: 0 20px; }
+            section { padding: 70px 0; }
+            .temple-tabs { overflow-x: auto; }
+            .temple-tab { white-space: nowrap; }
+            .mentor-grid { grid-template-columns: 1fr; }
+            .rewalsar-highlights { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 480px) {
+            .about-stats { grid-template-columns: 1fr 1fr; }
+            .temple-facts { grid-template-columns: 1fr; }
+            .rewalsar-highlights { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+    <div class="loader-mandala"></div>
+    <p class="loader-text">LOADING</p>
+</div>
+
+<!-- SCROLL TO TOP -->
+<div id="scrollTop"><i class="fas fa-chevron-up"></i></div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+    <div class="nav-inner">
+        <div class="nav-logo">
+            <div class="nav-logo-icon">☸</div>
+            <div class="nav-logo-text">
+                ISTP Group — IIT Mandi
+                <span>Cultural Heritage Project</span>
+            </div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#abstract">Abstract</a></li>
+            <li><a href="#locations">Locations</a></li>
+            <li><a href="#temples">Temples</a></li>
+            <li><a href="#tibetan">Tibetan Culture</a></li>
+            <li><a href="#medicine">Medicine</a></li>
+            <li><a href="#rewalsar">Rewalsar</a></li>
+            <li><a href="#findings">Findings</a></li>
+            <li><a href="#survey">Survey</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger">
+            <span></span><span></span><span></span>
+        </div>
+    </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+    <a href="#abstract">Abstract</a>
+    <a href="#locations">Field Locations</a>
+    <a href="#temples">Temples of Mandi</a>
+    <a href="#tibetan">Tibetan Culture</a>
+    <a href="#medicine">Traditional Medicine</a>
+    <a href="#rewalsar">Rewalsar — Site Visit 3</a>
+    <a href="#findings">Findings</a>
+    <a href="#survey">Survey Data</a>
+    <a href="#recommendations">Recommendations</a>
+    <a href="#conclusion">Conclusion</a>
+</div>
+
+<!-- ==================== HERO ==================== -->
+<section class="hero" id="home">
+    <div class="hero-particles" id="particles"></div>
+    <div class="hero-mandala"></div>
+    <div class="hero-ornament"></div>
+    <div class="hero-content">
+        <div class="hero-badge">ISTP Report &nbsp;|&nbsp; IIT Mandi &nbsp;|&nbsp; 2024–25</div>
+        <h1 class="hero-title">
+            Archiving Cultural Practices
+            <span>&amp; Historical Texts of</span>
+            Himachal Pradesh
+        </h1>
+        <p class="hero-subtitle">
+            A field-study exploring temples, monasteries, manuscripts, traditional medicine,<br>
+            and living cultural heritage across Mandi, Dharamshala &amp; Rewalsar
+        </p>
+        <div class="hero-divider">
+            <div class="hero-divider-line"></div>
+            <div class="hero-divider-icon">☸</div>
+            <div class="hero-divider-line reverse"></div>
+        </div>
+        <div class="hero-meta">
+            <div class="hero-meta-item">
+                <span class="hero-meta-label">Field Sites</span>
+                <span class="hero-meta-value">Mandi · Dharamshala · Rewalsar</span>
+            </div>
+            <div class="hero-meta-item">
+                <span class="hero-meta-label">Temples Visited</span>
+                <span class="hero-meta-value">8+ Sacred Sites</span>
+            </div>
+            <div class="hero-meta-item">
+                <span class="hero-meta-label">Site Visits</span>
+                <span class="hero-meta-value">3 Locations</span>
+            </div>
+            <div class="hero-meta-item">
+                <span class="hero-meta-label">Community</span>
+                <span class="hero-meta-value">Local &amp; Tibetan</span>
+            </div>
+        </div>
+        <div class="hero-cta">
+            <a href="#abstract" class="btn-primary">Read Report</a>
+            <a href="#temples" class="btn-secondary">Explore Temples</a>
+        </div>
+    </div>
+    <div class="hero-scroll">
+        <div class="scroll-line"></div>
+        Scroll to explore
+    </div>
+</section>
+
+<!-- ==================== ABSTRACT ==================== -->
+<section class="about-section" id="abstract">
+    <div class="container">
+        <div class="section-header fade-in">
+            <span class="section-tag">Front Matter</span>
+            <h2 class="section-title">Abstract &amp; Project Overview</h2>
+            <p class="section-subtitle">An academic field study on preserving the living cultural memory of the Himalayan region</p>
+            <div class="section-ornament">
+                <div class="ornament-line"></div><div class="ornament-diamond"></div><div class="ornament-line"></div>
+            </div>
+        </div>
+        <div class="about-grid">
+            <div class="about-text slide-left">
+                <h3>Abstract</h3>
+                <p>The Himalayan region of Himachal Pradesh harbors one of the richest concentrations of living cultural heritage in South Asia — encompassing centuries-old temple traditions, Tibetan Buddhist monastic practices, rare manuscript collections, traditional Sowa-Rigpa medicine, and intangible oral knowledge systems transmitted across generations through direct human contact.</p>
+                <p>This Interactive Socio-Technical Practicum (ISTP) report presents findings from three structured field visits: <strong>Site Visit 1 — Mandi</strong> ("Choti Kashi"), <strong>Site Visit 2 — Dharamshala/McLeodganj</strong>, and <strong>Site Visit 3 — Rewalsar (Tso Pema)</strong>, conducted during the academic year 2024–25. Through direct observation, semi-structured interviews with local priests, monks, traditional doctors (Amchis), and community members, this study documents key practices, identifies threats to their continuity, and proposes actionable recommendations for digital and community-based archiving.</p>
+                <p>Our findings reveal a significant generational gap in cultural transmission, the fragility of oral knowledge systems, and the urgent need for collaborative archiving efforts involving local communities, academic institutions, and government bodies. The study highlights the profound syncretic nature of Himachali and Tibetan traditions — most vividly demonstrated at Rewalsar, where Buddhist, Hindu, and Sikh pilgrims share one of the most sacred landscapes in the Himalayan world.</p>
+                <div class="keywords-box">
+                    <h4>Keywords</h4>
+                    <span class="keyword-tag">Cultural Archiving</span>
+                    <span class="keyword-tag">Himachal Pradesh</span>
+                    <span class="keyword-tag">Tibetan Buddhism</span>
+                    <span class="keyword-tag">Sowa-Rigpa</span>
+                    <span class="keyword-tag">Mandi Temples</span>
+                    <span class="keyword-tag">Oral Heritage</span>
+                    <span class="keyword-tag">Manuscripts</span>
+                    <span class="keyword-tag">Dharamshala</span>
+                    <span class="keyword-tag">Rewalsar</span>
+                    <span class="keyword-tag">Digitization</span>
+                    <span class="keyword-tag">ISTP IIT Mandi</span>
+                </div>
+            </div>
+            <div class="about-image-side slide-right">
+                <div class="about-image-frame">
+                    <div class="about-image-placeholder t1">
+                        <i class="fas fa-om"></i>
+                        <span style="font-size:0.9rem; font-family:'Cinzel',serif; margin-top:10px;">Field Documentation</span>
+                        <span style="font-size:0.75rem; opacity:0.6; font-family:'Lato',sans-serif;">IIT Mandi ISTP 2024–25</span>
+                    </div>
+                </div>
+                <div class="about-stats" style="margin-top:25px;">
+                    <div class="stat-card fade-in">
+                        <div class="stat-number">8+</div>
+                        <div class="stat-label">Temples Documented</div>
+                    </div>
+                    <div class="stat-card fade-in">
+                        <div class="stat-number">15+</div>
+                        <div class="stat-label">Interviews Conducted</div>
+                    </div>
+                    <div class="stat-card fade-in">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">Field Site Visits</div>
+                    </div>
+                    <div class="stat-card fade-in">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Years of Heritage</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== TEAM ==================== -->
+<section class="team-section" id="team">
+    <div class="container">
+        <div class="section-header fade-in">
+            <span class="section-tag">Project Members</span>
+            <h2 class="section-title">Team &amp; Mentors</h2>
+            <div class="section-ornament">
+                <div class="ornament-line"></div><div class="ornament-diamond"></div><div class="ornament-line"></div>
+            </div>
+        </div>
+        <div class="team-grid fade-in">
+            <div class="team-card"><div class="team-avatar"><i class="fas fa-user-graduate"></i></div><div class="team-name">Adarsh Tripathi</div><div class="team-roll">B23306</div></div>
+            <div class="team-card"><div class="team-avatar"><i class="fas fa-user-graduate"></i></div><div class="team-name">Mohit kumar</div><div class="team-roll">B23325</div></div>
+            <div class="team-card"><div class="team-avatar"><i class="fas fa-user-graduate"></i></div><div class="team-name">Mayank Bhamoo</div><div class="team-roll">B23080</div></div>
+            <div class="team-card"><div class="team-avatar"><i class="fas fa-user-graduate"></i></div><div class="team-name">Manan</div><div class="team-roll">B23</div></div>
+            <div class="team-card"><div class="team-avatar"><i class="fas fa-user-graduate"></i></div><div class="team-name">Darshil</div><div class="team-roll">B23</div></div>
+        </div>
+        <div class="mentor-grid fade-in" style="margin-top:30px;">
+            <div class="mentor-card">
+                <div class="mentor-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                <div class="mentor-info"><h4>Project Mentor</h4><p>Dr. Harsh Soni</p><span>School of Physical science — IIT Mandi</span></div>
+            </div>
+            <div class="mentor-card">
+                <div class="mentor-icon"><i class="fas fa-user-tie"></i></div>
+                <div class="mentor-info"><h4>Teaching Assistant</h4><p>Shivani Mam</p><span>IIT Mandi</span></div>
+            </div>
+            <div class="mentor-card">
+                <div class="mentor-icon"><i class="fas fa-university"></i></div>
+                <div class="mentor-info"><h4>Institution</h4><p>IIT Mandi</p><span>ISTP Programme — Academic Year 2025–26</span></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== FIELD LOCATIONS ==================== -->
+<section class="locations-section" id="locations">
+    <div class="container">
+        <div class="section-header fade-in">
+            <span class="section-tag" style="color:var(--gold);">Field Study</span>
+            <h2 class="section-title" style="color:var(--cream);">Three Field Locations</h2>
+            <p class="section-subtitle" style="color:rgba(253,246,227,0.7);">Three distinct yet deeply interconnected sacred landscapes of Himachal Pradesh</p>
+            <div class="section-ornament"><div class="ornament-line"></div><div class="ornament-diamond"></div><div class="ornament-line"></div></div>
+        </div>
+        <div class="locations-grid">
+            <!-- SITE 1 -->
+            <div class="location-card slide-left">
+                <div class="location-img">
+                    <div class="location-img-placeholder mandi">
+    <img src="photos/istp1.jpg" alt="Mandi Visit" style="width:100%; height:100%; object-fit:cover;">
+</div>
+                    <div class="location-overlay">
+                        <div class="location-tag">&#9312; Site Visit 01</div>
+                        <div class="location-name">Mandi — Choti Kashi</div>
+                    </div>
+                </div>
+                <div class="location-body">
+                    <div class="visit-badge"><i class="fas fa-map-marker-alt"></i>First Field Visit</div>
+                    <p class="location-desc">Known as the <em>"Varanasi of the Hills"</em>, Mandi is home to over 81 temples built in Nagara and Shikhara architectural styles, many dating to the 16th century under the Sen Rajput dynasty. Our team documented eight major temple complexes, capturing architectural details, iconographic significance, and living ritual traditions.</p>
+                    <div class="location-sites">
+                        <span class="site-chip">Panchvaktra Temple</span><span class="site-chip">Trilokinath Temple</span>
+                        <span class="site-chip">Bhootnath Temple</span><span class="site-chip">Tarna Devi Temple</span>
+                        <span class="site-chip">Neelkanth Mahadev</span><span class="site-chip">Bhimakali Temple</span>
+                        <span class="site-chip">Kuan Rani Temple</span><span class="site-chip">Shambhu Ghat</span>
+                    </div>
+                </div>
+            </div>
+            <!-- SITE 2 -->
+            <div class="location-card fade-in">
+                <div class="location-img">
+                    <div class="location-img-placeholder mandi">
+    <img src="photos/istp2.jpg" alt="Mandi Visit" style="width:100%; height:100%; object-fit:cover;">
+</div>
+                    <div class="location-overlay">
+                        <div class="location-tag">&#9313; Site Visit 02</div>
+                        <div class="location-name">Dharamshala — McLeodganj</div>
+                    </div>
+                </div>
+                <div class="location-body">
+                    <div class="visit-badge"><i class="fas fa-map-marker-alt"></i>Second Field Visit</div>
+                    <p class="location-desc">The seat of the Tibetan Government-in-Exile and home of the Dalai Lama, McLeodganj is one of the most vibrant repositories of Tibetan Buddhist culture outside Tibet. Our team engaged with monks, Amchi doctors, and community leaders, documenting Sowa-Rigpa, life-cycle rituals, and manuscript traditions at Men-Tsee-Khang.</p>
+                    <div class="location-sites">
+                        <span class="site-chip">Monasteries (McLeodganj)</span><span class="site-chip">Men-Tsee-Khang</span>
+                        <span class="site-chip">Tibetan Settlements</span><span class="site-chip">Namgyal Monastery</span>
+                        <span class="site-chip">Herbal Medicine Centers</span>
+                    </div>
+                </div>
+            </div>
+            <!-- SITE 3 -->
+            <div class="location-card slide-right">
+                <div class="location-img">
+                    <div class="location-img-placeholder mandi">
+    <img src="photos/istp3.jpg" alt="Mandi Visit" style="width:100%; height:100%; object-fit:cover;">
+</div>
+                    <div class="location-overlay">
+                        <div class="location-tag">&#9314; Site Visit 03</div>
+                        <div class="location-name">Rewalsar — Tso Pema</div>
+                    </div>
+                </div>
+                <div class="location-body">
+                    <div class="visit-badge"><i class="fas fa-map-marker-alt"></i>Third Field Visit</div>
+                    <p class="location-desc">Located approximately 24 km from Mandi, Rewalsar (Tso Pema — "Lotus Lake") is a profoundly sacred inter-faith pilgrimage site where Buddhist, Hindu, and Sikh traditions converge. This third visit documented the syncretic heritage of the sacred lake, the legend of Padmasambhava and Princess Mandarava, and living pilgrimage traditions.</p>
+                    <div class="location-sites">
+                        <span class="site-chip">Tso Pema (Lotus Lake)</span><span class="site-chip">Lakeside Monasteries</span>
+                        <span class="site-chip">Padmasambhava Statue</span><span class="site-chip">Hindu Shrines</span>
+                        <span class="site-chip">Sikh Gurudwara</span><span class="site-chip">Mandarava Legend Site</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== METHODOLOGY ==================== -->
+<section class="method-section" id="methodology">
+    <div class="container">
+        <div class="section-header fade-in">
+            <span class="section-tag">Research Design</span>
+            <h2 class="section-title">Methodology</h2>
+            <p class="section-subtitle">A multi-modal qualitative and observational research approach across three field sites</p>
+            <div class="section-ornament"><div class="ornament-line"></div><div class="ornament-diamond"></div><div class="ornament-line"></div></div>
+        </div>
+        <div class="method-timeline fade-in">
+            <div class="timeline-item">
+                <div class="timeline-content left">
+                    <h4>Literature Review</h4>
+                    <p>Reviewed existing scholarship on Himachali temple traditions, Tibetan manuscript culture, Sowa-Rigpa, and oral heritage preservation. Consulted ASI reports, cultural studies, and government heritage documents.</p>
+                </div>
+                <div class="timeline-center"><div class="timeline-dot"></div></div>
+                <div class="timeline-empty"></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-empty"></div>
+                <div class="timeline-center"><div class="timeline-dot"></div></div>
+                <div class="timeline-content right">
+                    <h4>Questionnaire Design</h4>
+                    <p>Developed an 8-section structured fieldwork questionnaire covering folk culture, ritual practices, manuscript preservation, archiving methods, and modern challenges — deployed across all three field sites.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content left">
+                    <h4>&#9312; Site Visit 1 — Mandi</h4>
+                    <p>Documented 8+ temples including Panchvaktra, Trilokinath, Bhootnath, Tarna Devi, Neelkanth Mahadev, Bhimakali, khua Rani, and Shambhu Ghat. Interviewed temple priests, local historians, and ASI officials.</p>
+                </div>
+                <div class="timeline-center"><div class="timeline-dot"></div></div>
+                <div class="timeline-empty"></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-empty"></div>
+                <div class="timeline-center"><div class="timeline-dot"></div></div>
+                <div class="timeline-content right">
+                    <h4>&#9313; Site Visit 2 — Dharamshala</h4>
+                    <p>Visited monasteries in McLeodganj and Men-Tsee-Khang. Interviewed monks (Tenzin, Tsering, Choekyi), Amchi doctors, and cultural guides. Documented Sowa-Rigpa, life-cycle rituals, and monastic education.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content left">
+                    <h4>&#9314; Site Visit 3 — Rewalsar</h4>
+                    <p>Visited Tso Pema (Lotus Lake). Documented the syncretic heritage of Buddhist monasteries, Hindu shrines, and Sikh Gurudwara. Recorded oral accounts of the Padmasambhava–Mandarava legend and observed living pilgrimage practices across faith traditions.</p>
+                </div>
+                <div class="timeline-center"><div class="timeline-dot"></div></div>
+                <div class="timeline-empty"></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-empty"></div>
+                <div class="timeline-center"><div class="timeline-dot"></div></div>
+                <div class="timeline-content right">
+                    <h4>Data Analysis &amp; Reporting</h4>
+                    <p>Transcribed interviews, coded field notes thematically across all three sites, compiled documentation, and synthesized findings into structured recommendations for digital archiving and policy advocacy.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== TEMPLES OF MANDI ==================== -->
+<section class="temples-section" id="temples">
+    <div class="container">
+        <div class="section-header fade-in">
+            <span class="section-tag">Site Visit 1 — Mandi</span>
+            <h2 class="section-title">Temples of Mandi — Choti Kashi</h2>
+            <p class="section-subtitle">Eight centuries of devotion, architecture, and living ritual tradition on the banks of the Vipasha</p>
+            <div class="section-ornament"><div class="ornament-line"></div><div class="ornament-diamond"></div><div class="ornament-line"></div></div>
+        </div>
+        <div class="temple-tabs fade-in">
+            <button class="temple-tab active" onclick="showTemple('panchvaktra', this)">Panchvaktra</button>
+            <button class="temple-tab" onclick="showTemple('trilokinath', this)">Trilokinath</button>
+            <button class="temple-tab" onclick="showTemple('bhootnath', this)">Bhootnath</button>
+            <button class="temple-tab" onclick="showTemple('tarna', this)">Tarna Devi</button>
+            <button class="temple-tab" onclick="showTemple('neelkanth', this)">Neelkanth Mahadev</button>
+            <button class="temple-tab" onclick="showTemple('bhimakali', this)">Bhimakali</button>
+            <button class="temple-tab" onclick="showTemple('kuanrani', this)">Kuan Rani</button>
+            <button class="temple-tab" onclick="showTemple('shambhu', this)">Shambhu Ghat</button>
+        </div>
+
+        <!-- Panchvaktra -->
+        <div class="temple-content active" id="temple-panchvaktra">
+            <div class="temple-image-block slide-left">
+                <div class="temple-img-placeholder t1">
+    <img src="photos/istp4.jpg" alt="Panchvaktra Temple"
+         style="width:100%; height:100%; object-fit:cover;">
+    
+    <span>Panchvaktra Mahadev Temple</span>
+    <div class="img-caption">Panchvaktra Mahadev Temple, Mandi — 16th Century</div>
+</div>
+            </div>
+            <div class="temple-info slide-right">
+                <h3>Panchvaktra Mahadev Temple</h3>
+                <div class="temple-subtitle">Sanctum of the Five-Faced Shiva — ASI Protected Monument</div>
+                <p>Situated on the sacred banks of the Vipasha River, the Panchvaktra Mahadev Temple is one of the most remarkable Shaiva shrines in Himachal Pradesh. Constructed in the 16th century — contemporaneous with the Trilokinath Temple — it was restored and declared a protected monument by ASI in the 1980s.</p>
+                <p>The north-facing temple enshrines Lord Shiva in his five-faced (<em>Panchmukhi</em>) form. The five faces — <strong>Aghora, Ishaan, Tatpurush, Vamdev, and Rudra</strong> — represent the spread of divine consciousness in all directions. According to Tantric scriptures, this form is identified with the fourth Mahavidya, Devi Shodashi (Rajarajeshwari).</p>
+                <p>The sanctum houses a five-faced Shivalinga, while the mandapa displays the Panchmukhi Shiva idol with hair (<em>jata</em>) in the yogic form. A remarkable sculpture depicts Goddess Parvati embracing Shiva — representing the Ardhanarishvara aspect and the creative union of Shakti with Shiva. The temple architecture reflects the harmonious coexistence of Vaishnav and Shaiv traditions.</p>
+                <div class="temple-facts">
+                    <div class="fact-item"><div class="fact-label">Century</div><div class="fact-value">16th Century CE</div></div>
+                    <div class="fact-item"><div class="fact-label">Deity</div><div class="fact-value">Panchmukhi Shiva</div></div>
+                    <div class="fact-item"><div class="fact-label">Protected By</div><div class="fact-value">ASI (1980s)</div></div>
+                    <div class="fact-item"><div class="fact-label">Orientation</div><div class="fact-value">North-Facing</div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Trilokinath -->
+        <div class="temple-content" id="temple-trilokinath">
+            <div class="temple-image-block slide-left">
+                <div class="temple-img-placeholder t2">
+    <img src="photos/istp5.jpg" alt="Trilokinath Temple"
+         style="width:100%; height:100%; object-fit:cover;">
+
+    <span>Trilokinath Temple</span>
+    <div class="img-caption">Trilokinath Temple — Built 1520 CE, Mandi</div>
+</div>
+            </div>
+            <div class="temple-info slide-right">
+                <h3>Trilokinath Temple</h3>
+                <div class="temple-subtitle">The Three-Faced Shiva — Built 1520 CE — ASI Protected</div>
+                <p>Standing on the sacred banks of the Vipasha River, the Trilokinath Temple predates the founding of the town of Mandi itself. An inscription in <strong>Tankari script</strong> on the sanctum's outer wall dates its construction to <em>Kali Samvat 2264, Shaka Samvat 1442 (1520 CE)</em>, commissioned by <strong>Queen Sultana Devi</strong>, consort of Raja Ajbar Sen of the Sen Rajput dynasty.</p>
+                <p>The sanctum houses a life-sized three-faced idol of Shiva, seated on Nandi Maharaj with Parvati carved on his left. A rare Panchamukhi idol in the mandapa features five faces — three visible, one facing the back wall, and one hidden at the top — representing the esoteric spiritual traditions of the Bengal-origin Sen kings.</p>
+                <p>The temple complex also enshrines Goddesses <strong>Narada and Sharda</strong> — considered awakened deities (<em>Jagrit Devis</em>) and the family deities (Kuldevis) of Mandi's people. According to temple priest Ramesh, the three-faced idol was consecrated through <em>Jeev Pratishtha</em> and is believed to have moved at night during the princely era.</p>
+                <div class="temple-facts">
+                    <div class="fact-item"><div class="fact-label">Year Built</div><div class="fact-value">1520 CE</div></div>
+                    <div class="fact-item"><div class="fact-label">Style</div><div class="fact-value">Shikhara</div></div>
+                    <div class="fact-item"><div class="fact-label">Script Found</div><div class="fact-value">Tankari Script</div></div>
+                    <div class="fact-item"><div class="fact-label">Patron</div><div class="fact-value">Queen Sultana Devi</div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bhootnath -->
+        <div class="temple-content" id="temple-bhootnath">
+            <div class="temple-image-block slide-left">
+                <div class="temple-img-placeholder t3">
+                    <img src="photos/istp6.jpg" alt="Bhootnath Temple"
+         style="width:100%; height:100%; object-fit:cover;">
+                    <span>Bhootnath Temple</span>
+                    <div class="img-caption">Bhootnath Temple — 1527 CE — Nagara Style</div>
+                </div>
+            </div>
+            <div class="temple-info slide-right">
+                <h3>Bhootnath Temple</h3>
+                <div class="temple-subtitle">Lord Shiva's Eternal Abode — Founded 1527 CE</div>
+                <p>The Bhootnath Temple, located in Chohatta Bazar (Bhootnath Gali), is Mandi's most iconic Shiva temple. Founded in <strong>1527 CE</strong> by Raja Ajber Sen — the founder of Mandi town — it stands as a masterpiece of <em>Nagara-style architecture</em> with its soaring Shikhara visible across the town.</p>
+                <p>According to legend, Raja Ajber Sen dreamed of a cow pouring milk onto a spot in the forest. Excavation revealed a naturally-formed Shivalinga — interpreted as a divine sign — upon which the temple was constructed. The Shivalinga, enshrined in the central sanctum (<em>garbhagriha</em>), has been continuously worshipped for nearly 500 years.</p>
+                <p>The temple is the epicenter of Mandi's celebrated <strong>International Shivratri Festival</strong> — a week-long event drawing deities from 200+ temples across the district. The Shivalinga is bathed in Panchamrit, and the courtyard transforms into a vibrant cultural arena blending devotion and tradition.</p>
+                <div class="temple-facts">
+                    <div class="fact-item"><div class="fact-label">Founded</div><div class="fact-value">1527 CE</div></div>
+                    <div class="fact-item"><div class="fact-label">Style</div><div class="fact-value">Nagara / Shikhara</div></div>
+                    <div class="fact-item"><div class="fact-label">Festival</div><div class="fact-value">Intl. Shivratri</div></div>
+                    <div class="fact-item"><div class="fact-label">Founder</div><div class="fact-value">Raja Ajber Sen</div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tarna -->
+        <div class="temple-content" id="temple-tarna">
+            <div class="temple-image-block slide-left">
+                <div class="temple-img-placeholder t4">
+                    <img src="photos/istp7.jpg" alt="Bhootnath Temple"
+         style="width:100%; height:100%; object-fit:cover;">
+                    <span>Tarna Devi Temple</span>
+                    <div class="img-caption">Tarna Devi Temple — 17th Century — Hilltop Shrine</div>
+                </div>
+            </div>
+            <div class="temple-info slide-right">
+                <h3>Tarna Devi Temple</h3>
+                <div class="temple-subtitle">Shyama Kali — Victory Monument of King Shyam Sen</div>
+                <p>Perched dramatically on a hilltop overlooking Mandi, the Tarna Devi Temple is dedicated to <strong>Devi Tarana Shyama Kali</strong> — regarded by the people of Mandi as "essential as life itself." Built in the 17th century by King <strong>Shyam Sen</strong> (r. 1664–1676), it serves as both a spiritual sanctuary and a victory monument commemorating the Lohara Battle against Suket.</p>
+                <p>The name "Tarana" derives from the Sanskrit meaning <em>"one who helps cross the ocean of existence."</em> The north-facing sanctum houses a natural stone idol of the Goddess, whose tongue protrudes and whose form radiates fierce compassion. The Tamasic energy associated with this west-facing Kali temple historically included animal sacrifice practices.</p>
+                <p>King Balveer Sen later embellished the temple with exquisite <strong>Meenakari work</strong> — craftsmen from Jaipur applied gold, silver, and vivid colors to stone ceilings and walls, depicting Ganesha, Shiva, and Kali in the Kundan art tradition.</p>
+                <div class="temple-facts">
+                    <div class="fact-item"><div class="fact-label">Century</div><div class="fact-value">17th Century CE</div></div>
+                    <div class="fact-item"><div class="fact-label">Deity</div><div class="fact-value">Shyama Kali / Tara</div></div>
+                    <div class="fact-item"><div class="fact-label">Special Feature</div><div class="fact-value">Meenakari Work</div></div>
+                    <div class="fact-item"><div class="fact-label">Patron King</div><div class="fact-value">Shyam Sen</div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Neelkanth -->
+        <div class="temple-content" id="temple-neelkanth">
+            <div class="temple-image-block slide-left">
+                <div class="temple-img-placeholder t5">
+                    <img src="photos/istp8.jpg" alt="Bhootnath Temple"
+         style="width:100%; height:100%; object-fit:cover;">
+                    <span>Neelkanth Mahadev Temple</span>
+                    <div class="img-caption">Neelkanth Mahadev &amp; Royal Stepwell — Mandi</div>
+                </div>
+            </div>
+            <div class="temple-info slide-right">
+                <h3>Neelkanth Mahadev Temple</h3>
+                <div class="temple-subtitle">The Blue-Throated Shiva — Shikhara Style with Royal Stepwell</div>
+                <p>The Neelkanth Mahadev Temple enshrines Lord Shiva in his <em>Neelkanth</em> (blue-throated) form — commemorating Shiva's act of consuming the cosmic poison during the churning of the ocean (<em>Samudra Manthan</em>). Built in the Shikhara architectural style on a raised platform facing east, the temple features a Shiva Linga with a prominent serpent sculpture coiled around it.</p>
+                <p>The sanctum entrance displays a remarkable sculpture of <strong>Lord Indra riding an elephant</strong>. Adjacent stands the royal-era stepwell <strong>"Pehru Ri Baay"</strong> — carved in Shikhara style with a circumambulatory path — and below it the stepped water tank <strong>"Jaichu Naun"</strong>, a historic sacred water source for the townspeople of Mandi.</p>
+                <div class="temple-facts">
+                    <div class="fact-item"><div class="fact-label">Style</div><div class="fact-value">Shikhara — East-Facing</div></div>
+                    <div class="fact-item"><div class="fact-label">Deity</div><div class="fact-value">Neelkanth Shiva</div></div>
+                    <div class="fact-item"><div class="fact-label">Feature</div><div class="fact-value">Royal Stepwell</div></div>
+                    <div class="fact-item"><div class="fact-label">Location</div><div class="fact-value">Near Victoria Bridge</div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bhimakali -->
+        <div class="temple-content" id="temple-bhimakali">
+            <div class="temple-image-block slide-left">
+                <div class="temple-img-placeholder t6">
+                    <img src="photos/istp9.jpg" alt="Bhootnath Temple"
+         style="width:100%; height:100%; object-fit:cover;">
+                    <span>Bhimakali Temple</span>
+                    <div class="img-caption">Bhimakali Temple — Est. 1660 CE — Vipasha Riverbank</div>
+                </div>
+            </div>
+            <div class="temple-info slide-right">
+                <h3>Bhimakali Temple</h3>
+                <div class="temple-subtitle">Kuldevi of Road Brahmins — Built 1660–1666 CE</div>
+                <p>Situated on a high mound along the banks of the Vipasha River, the Bhimakali Temple enshrines the natural form of the Goddess Bhimakali as a <em>pindi</em> (sacred stone idol) — considered the Kuldevi (family deity) of the Road Brahmin families who migrated to Mandi alongside the Sen Rajput rulers.</p>
+                <p>The temple carries a dramatic legend: opponents of idol worship threw the sacred <em>pindi</em> into the Vipasha River. The Goddess appeared in a vision to her devotee <strong>Sahdev</strong>, directing him to retrieve the pindi. Sahdev recovered the idol from the river and reinstalled it on the mound — a miraculous restoration that deepened community devotion.</p>
+                <p>Construction began on <strong>September 26, 1660</strong> and was completed on <strong>May 28, 1666</strong>, with significant contributions from devotee Tara Kapoor. Until the 1980s, the surrounding area contained remnants of ancient sculptures and Shivalingas.</p>
+                <div class="temple-facts">
+                    <div class="fact-item"><div class="fact-label">Construction</div><div class="fact-value">1660–1666 CE</div></div>
+                    <div class="fact-item"><div class="fact-label">Deity</div><div class="fact-value">Goddess Bhimakali</div></div>
+                    <div class="fact-item"><div class="fact-label">Type</div><div class="fact-value">Kuldevi Temple</div></div>
+                    <div class="fact-item"><div class="fact-label">Community</div><div class="fact-value">Road Brahmins</div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Kuan Rani -->
+        <div class="temple-content" id="temple-kuanrani">
+            <div class="temple-image-block slide-left">
+                <div class="temple-img-placeholder t7">
+                    <img src="photos/istp10.jpg" alt="Bhootnath Temple"
+         style="width:100%; height:100%; object-fit:cover;">
+                    <span>Mata Kuan Rani Temple</span>
+                    <div class="img-caption">Mata Kuan Rani Temple — Sacred to Both Faiths</div>
+                </div>
+            </div>
+            <div class="temple-info slide-right">
+                <h3>Mata Kuan Rani Temple</h3>
+                <div class="temple-subtitle">Princess of the Well — Sacred to Buddhists &amp; Hindus — Gateway to Rewalsar</div>
+                <p>The Mata Kuan Rani Temple (<em>"Princess of the Well Temple"</em>) stands near the bank of the Beas River in Mandi, built over a deep well on a slate-roofed shrine. It marks the legendary site where <strong>Princess Mandarava</strong> — daughter of King Arshadhara of the ancient kingdom of Zahor (identified with Mandi) — was imprisoned by her father.</p>
+                <p>Born an "Awareness Dakini," Mandarava refused all marriage offers, was ordained by the Buddhist scholar Śāntarakṣita, and became the spiritual consort and disciple of <strong>Padmasambhava (Guru Rinpoche)</strong>. When the king condemned them both to death in a fire that raged for seven days, the flames transformed into the sacred lake of <strong>Rewalsar (Tso Pema)</strong> — directly connecting this temple to our third field site.</p>
+                <p>This temple is uniquely sacred to both <em>Tibetan Buddhists and Hindus</em>, and was historically a pilgrimage stop for Tibetan traders and pilgrims before the closure of the Tibet-India border.</p>
+                <div class="temple-facts">
+                    <div class="fact-item"><div class="fact-label">Significance</div><div class="fact-value">Inter-faith Site</div></div>
+                    <div class="fact-item"><div class="fact-label">Related Site</div><div class="fact-value">Rewalsar Lake (Site 3)</div></div>
+                    <div class="fact-item"><div class="fact-label">Legend</div><div class="fact-value">Mandarava &amp; Guru Rinpoche</div></div>
+                    <div class="fact-item"><div class="fact-label">Location</div><div class="fact-value">Beas Riverbank, Mandi</div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Shambhu Ghat -->
+        <div class="temple-content" id="temple-shambhu">
+            <div class="temple-image-block slide-left">
+                <div class="temple-img-placeholder t8">
+                    <img src="photos/istp11.jpg" alt="Bhootnath Temple"
+         style="width:100%; height:100%; object-fit:cover;">
+                    <span>Shambhu Ghat</span>
+                    <div class="img-caption">Shambhu Ghat — Sacred Riverside Site, Mandi</div>
+                </div>
+            </div>
+            <div class="temple-info slide-right">
+                <h3>Shambhu Ghat</h3>
+                <div class="temple-subtitle">Sacred Riverside Shivalinga — Near Paddal Ground</div>
+                <p>Shambhu Ghat, located near the New Bridge on the banks of the Beas River adjacent to the Paddal Ground, is a serene and spiritually charged site featuring a large Shivalinga dedicated to Lord Shiva. The riverside setting amplifies the meditative quality of this space, making it a frequented site for both ritual practice and quiet contemplation.</p>
+                <p>Devotees come to Shambhu Ghat for <em>ritual baths (snan)</em> in the sacred Beas before or after temple visits, offering prayers at the Shivalinga. The natural and unadorned character of the ghat distinguishes it from the ornate temples nearby, representing the more personal and direct dimension of Shaiva worship in Mandi.</p>
+                <p>The flowing Beas River at this point carries deep symbolic importance — identified with the ancient Vedic river Vipasha, it is the axis around which Mandi's entire sacred geography is organized. Numerous important temples, including Trilokinath and Panchvaktra, are situated along its banks.</p>
+                <div class="temple-facts">
+                    <div class="fact-item"><div class="fact-label">Type</div><div class="fact-value">Sacred Ghat</div></div>
+                    <div class="fact-item"><div class="fact-label">Deity</div><div class="fact-value">Lord Shiva (Shivalinga)</div></div>
+                    <div class="fact-item"><div class="fact-label">River</div><div class="fact-value">Beas (Vipasha)</div></div>
+                    <div class="fact-item"><div class="fact-label">Purpose</div><div class="fact-value">Ritual Bath &amp; Prayer</div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== TIBETAN CULTURE ==================== -->
+<section class="tibetan-section" id="tibetan">
+    <div class="container">
+        <div class="section-header fade-in">
+            <span class="section-tag" style="color:var(--gold);">Site Visit 2 — Dharamshala</span>
+            <h2 class="section-title" style="color:var(--cream);">Tibetan Cultural Practices</h2>
+            <p class="section-subtitle" style="color:rgba(253,246,227,0.7);">Living traditions documented through community interviews in McLeodganj</p>
+            <div class="section-ornament"><div class="ornament-line"></div><div class="ornament-diamond"></div><div class="ornament-line"></div></div>
+        </div>
+        <div style="text-align:center; margin-bottom:30px;" class="fade-in">
+            <div style="display:inline-block; background:rgba(253,246,227,0.04); border:1px solid rgba(212,175,55,0.2); padding:15px 30px; font-size:0.9rem; color:rgba(253,246,227,0.7); font-style:italic;">
+                Primary interviews with community members: <span style="color:var(--gold);">Tsering, Choekyi, and Tenzin</span> — residents and monks of the McLeodganj Tibetan settlement
+            </div>
+        </div>
+        <div class="tibetan-grid">
+            <div class="tibetan-card fade-in">
+                <div class="tibetan-card-icon">🕌</div>
+                <h4>Monastic Daily Life</h4>
+                <ul>
+                    <li><strong>Morning Prayer:</strong> 6:30 AM – 8:30 AM</li>
+                    <li><strong>Secondary Session:</strong> 8:40 AM – 9:00 AM</li>
+                    <li><strong>Discourse/Sermon:</strong> 9:00 AM – 11:00 AM</li>
+                    <li><strong>Monlam Puja:</strong> Annual 5-day prayer festival for the deceased — akin to Hindu Shradh</li>
+                    <li>Education includes English, Hindi, Maths, and Buddhist History/Philosophy</li>
+                    <li>Anyone (at any age, if unmarried) may choose to become a monk</li>
+                </ul>
+            </div>
+            <div class="tibetan-card fade-in">
+                <div class="tibetan-card-icon">💍</div>
+                <h4>Life Cycle Rituals</h4>
+                <ul>
+                    <li><strong>Naming:</strong> Formal name given by Guru/Lama for spiritual alignment</li>
+                    <li><strong>Marriage:</strong> 3-day ceremony presided over by a Lama</li>
+                    <li><strong>Pangden:</strong> Traditional striped apron — worn only by married women</li>
+                    <li>No Haldi ceremony; ring exchange is central</li>
+                    <li>Traditional attire and jewelry vary by village/region</li>
+                    <li>Core rituals remain mandatory despite modern Western influences</li>
+                </ul>
+            </div>
+            <div class="tibetan-card fade-in">
+                <div class="tibetan-card-icon">🕯️</div>
+                <h4>Death &amp; Afterlife Beliefs</h4>
+                <ul>
+                    <li><strong>3-Day Rule:</strong> Soul believed to stay in the body for 3 days after death</li>
+                    <li>Funeral timing calculated from birth date — may be delayed up to a week</li>
+                    <li><strong>49-Day Ritual:</strong> Prayers every 7th day; food set aside daily for the deceased</li>
+                    <li><strong>Sattu offering:</strong> Wheat, sugar, honey, and curd burnt in fire — soul "consumes" the essence through smoke</li>
+                    <li>Prayers performed to guide and release the transitioning soul</li>
+                </ul>
+            </div>
+            <div class="tibetan-card fade-in">
+                <div class="tibetan-card-icon">⭐</div>
+                <h4>Astrology &amp; Cultural Calendar</h4>
+                <ul>
+                    <li><strong>Losar:</strong> Tibetan New Year (typically February) — date varies as Tibetan calendar adds extra month every 3 years</li>
+                    <li><strong>Kundli:</strong> Life map for newborns — predicts lifespan, identifies planetary obstacles</li>
+                    <li><strong>Saga Dawa:</strong> 4th month (May) — dedicated to Avalokiteshvara prayers</li>
+                    <li><strong>Gaden Ngamchoe:</strong> Festival of lights akin to Diwali — marks a great Guru's passing</li>
+                    <li>No caste system or "untouchability" — all are fundamentally equal</li>
+                </ul>
+            </div>
+            <div class="tibetan-card fade-in">
+                <div class="tibetan-card-icon">🧿</div>
+                <h4>Protection Rituals &amp; Mantras</h4>
+                <ul>
+                    <li><strong>Kala Tika:</strong> Black mark behind ear/forehead to ward off evil eye — used until age 4–5</li>
+                    <li><strong>Tunga Amulet:</strong> Consecrated by Gurus — contains sacred stone/deity for protection</li>
+                    <li><strong>Kala Chakra:</strong> Thread/amulet distributed after major pujas</li>
+                    <li><strong>Green Tara Mantra:</strong> <em>Om Tare Tuttare Ture Soha</em> — for overcoming obstacles and bad dreams</li>
+                    <li><strong>Medicine Buddha Mantra:</strong> Recited while taking herbal medicines to enhance their efficacy</li>
+                </ul>
+            </div>
+            <div class="tibetan-card fade-in">
+                <div class="tibetan-card-icon">🌿</div>
+                <h4>Nature, Elements &amp; Modernity</h4>
+                <ul>
+                    <li><strong>Four Elements:</strong> Sa (Earth), Chu (Water), Me (Fire), Lung (Wind) — mantras chanted to mitigate natural disasters</li>
+                    <li>Older generations follow Guru's word with deep faith; younger generation is more analytical</li>
+                    <li>Dalai Lama encourages testing teachings through personal experience</li>
+                    <li>Traditions tied to the narrative of the struggle for Tibetan freedom</li>
+                    <li>Cultural identity remains strong despite diaspora context</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== TRADITIONAL MEDICINE ==================== -->
+<div class="medicine-block">
+    <div class="medicine-block-icon"><i class="fas fa-stethoscope"></i></div>
+    <div class="medicine-block-text">
+        <h4>Pulse Diagnosis & Urine Analysis</h4>
+        <p>Amchis (traditional Tibetan doctors) diagnose patients through pulse examination on both wrists, identifying internal organ conditions and energy imbalances. Urine analysis—based on color, odor, and bubble formation—is also used as a key diagnostic tool rooted in ancient Sowa-Rigpa texts.</p>
+    </div>
+</div>
+
+<div class="medicine-block">
+    <div class="medicine-block-icon"><i class="fas fa-leaf"></i></div>
+    <div class="medicine-block-text">
+        <h4>Himalayan Medicinal Flora</h4>
+        <p>Several high-altitude plants are widely used: <strong>Bichu Butti (Nettle)</strong> for diabetes and blood pressure, <strong>Buransh (Rhododendron)</strong> for fever and liver health, <strong>Devdar</strong> decoctions for joint pain and recovery, and <strong>Barberry (Daru-Haldi)</strong> for wound healing. <strong>Triphala</strong> (Haritaki, Bibhitaki, Amalaki) supports digestion.</p>
+    </div>
+</div>
+
+<div class="medicine-block">
+    <div class="medicine-block-icon"><i class="fas fa-seedling"></i></div>
+    <div class="medicine-block-text">
+        <h4>Rare Herbs & Regional Phenomena</h4>
+        <p>Unique Himalayan ecology supports rare species like <strong>Gucchi (Morels)</strong>, a highly valued mushroom growing under pine trees. Certain plants bloom once in 14 years, tied to local legends. <strong>Bana (Nirgundi)</strong> is used for sprains and joint pain through steam or paste application.</p>
+    </div>
+</div>
+
+<div class="medicine-block">
+    <div class="medicine-block-icon"><i class="fas fa-capsules"></i></div>
+    <div class="medicine-block-text">
+        <h4>Sacred Medicines & Remedies</h4>
+        <p>Medicines are derived from herbs, minerals, and sometimes purified metals. <strong>Mani Rilbu</strong> are sacred pills blessed by Gurus, while <strong>Shindeem</strong> is used for respiratory issues. Simple remedies like ginger water with honey are used for common illnesses.</p>
+    </div>
+</div>
+
+<div class="medicine-block">
+    <div class="medicine-block-icon"><i class="fas fa-pray"></i></div>
+    <div class="medicine-block-text">
+        <h4>Spiritual & Ethical Healing</h4>
+        <p>Healing integrates spirituality through invocation of the Medicine Buddha (Bhaisajyaguru). Doctors emphasize compassion and lifestyle correction, believing many illnesses arise from improper diet and habits rather than just physical causes.</p>
+    </div>
+</div>
+
+<div class="medicine-block">
+    <div class="medicine-block-icon"><i class="fas fa-hospital"></i></div>
+    <div class="medicine-block-text">
+        <h4>Men-Tsee-Khang Institute</h4>
+        <p>The Men-Tsee-Khang Institute in Dharamshala is the central hub of Sowa-Rigpa medicine. It combines traditional knowledge with modern relevance, treating chronic conditions like arthritis, digestive disorders, and stress-related illnesses.</p>
+    </div>
+</div>
+
+<!-- ==================== REWALSAR — SITE VISIT 3 ==================== -->
+<section class="rewalsar-section" id="rewalsar">
+    <div class="container">
+        <div class="section-header fade-in">
+            <span class="section-tag" style="color:var(--gold);">&#9314; Site Visit 3 — Rewalsar</span>
+            <h2 class="section-title" style="color:var(--cream);">Rewalsar — Tso Pema</h2>
+            <p class="section-subtitle" style="color:rgba(253,246,227,0.7);">The Lotus Lake — our third field site, where Hindu, Buddhist &amp; Sikh traditions converge in sacred legend</p>
+            <div class="section-ornament"><div class="ornament-line"></div><div class="ornament-diamond"></div><div class="ornament-line"></div></div>
+        </div>
+
+        <!-- Visit context banner -->
+        <div class="fade-in" style="margin-bottom:50px;">
+            <div style="background:rgba(212,175,55,0.08); border:1px solid rgba(212,175,55,0.25); border-left:4px solid var(--gold); padding:20px 30px; display:flex; align-items:center; gap:20px; flex-wrap:wrap;">
+                <div style="font-size:2rem; color:var(--gold);">&#9314;</div>
+                <div>
+                    <div style="font-family:'Cinzel',serif; color:var(--gold); font-size:0.75rem; letter-spacing:3px; text-transform:uppercase; margin-bottom:5px;">Third Field Visit</div>
+                    <div style="font-family:'Cormorant Garamond',serif; color:rgba(253,246,227,0.85); font-size:1rem; line-height:1.6;">
+                        Rewalsar (Tso Pema) was visited as our <strong>third and final field site</strong>, approximately 24 km from Mandi. This visit focused on documenting the inter-faith syncretic heritage of the sacred Lotus Lake — its Buddhist monasteries, Hindu shrines, Sikh Gurudwara, oral legends of Padmasambhava and Princess Mandarava, and the living pilgrimage traditions of multiple communities co-existing at one sacred site.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="rewalsar-layout">
+            <div class="rewalsar-text slide-left">
+                <h3>The Sacred Lotus Lake</h3>
+                <p>Situated approximately 24 km from Mandi, Rewalsar Lake — known in Tibetan as <strong>Tso Pema</strong> ("Lotus Lake") — is one of the most significant inter-faith pilgrimage sites in Himachal Pradesh, simultaneously sacred to Tibetan Buddhists, Hindus, and Sikhs. This third visit allowed our team to observe how multiple living faith traditions co-exist at a single sacred landscape.</p>
+                <p>The lake is inseparably linked to the legend of <strong>Princess Mandarava</strong> of Zahor (Mandi) — documented at the Kuan Rani Temple during our first field visit — and <strong>Padmasambhava (Guru Rinpoche)</strong>. When the king condemned them to death in a pyre that burned for seven days, the flames transformed into this lake, with a lotus blooming at its center. This miracle convinced the king, who sought teachings from Padmasambhava and granted his daughter freedom to pursue her spiritual destiny.</p>
+                <div class="rewalsar-features">
+                    <div class="rewalsar-feature">
+                        <i class="fas fa-dharmachakra"></i>
+                        <p><strong>Buddhist Significance:</strong> Multiple monasteries, prayer flags, and a large statue of Padmasambhava overlook the lake. Tibetan pilgrims circumambulate the lake reciting mantras — Vajrayana practitioners consider it a sacred power site (piṭha). Monks from McLeodganj (Site 2) regularly undertake pilgrimage here.</p>
+                    </div>
+                    <div class="rewalsar-feature">
+                        <i class="fas fa-om"></i>
+                        <p><strong>Hindu Significance:</strong> The lake is associated with the sage Lomas and has temples dedicated to local Hindu deities. Hindu pilgrims perform rituals here, particularly during Maha Shivratri — directly connecting to the temple tradition documented in our Mandi visit (Site 1).</p>
+                    </div>
+                    <div class="rewalsar-feature">
+                        <i class="fas fa-fish"></i>
+                        <p><strong>Floating Islands &amp; Sacred Carp:</strong> The lake is famous for small floating reed islands that shift position — considered sacred by all communities. Sacred carp fish are considered divine and fed by pilgrims of all faiths, representing a unique shared ritual practice that transcends religious boundaries.</p>
+                    </div>
+                    <div class="rewalsar-feature">
+                        <i class="fas fa-route"></i>
+                        <p><strong>Historical Pilgrimage Route:</strong> Before the closure of the Tibet-India border, Rewalsar was a significant stop for Tibetan pilgrims and traders — a historical corridor connecting the Dharamshala Tibetan community (Site 2) with the sacred geography of Mandi (Site 1).</p>
+                    </div>
+                </div>
+            </div>
+            <div class="rewalsar-image slide-right">
+                <div class="rewalsar-img-placeholder">
+                    <img src="photos/istp12.jpeg" alt="Rewalsar Lake"
+     style="width:100%; height:100%; object-fit:cover;">
+                    <span style="font-family:'Cinzel',serif; font-size:1.1rem;">Rewalsar — Tso Pema</span>
+                    <span style="font-family:'Lato',sans-serif; font-size:0.75rem; opacity:0.6;">Site Visit 3 — The Lotus Lake</span>
+                    <div style="margin-top:20px; padding:15px; background:rgba(255,255,255,0.05); border:1px solid rgba(212,175,55,0.2); max-width:300px; text-align:center;">
+                        
+                    </div>
+                </div>
+                <div class="rewalsar-highlights">
+                    <div class="rewalsar-highlight-card">
+                        <i class="fas fa-dharmachakra"></i>
+                        <p>Tibetan Buddhist<br>Monasteries &amp; Statues</p>
+                    </div>
+                    <div class="rewalsar-highlight-card">
+                        <i class="fas fa-om"></i>
+                        <p>Hindu Shrines &amp;<br>Sage Lomas Temple</p>
+                    </div>
+                    <div class="rewalsar-highlight-card">
+                        <i class="fas fa-star-of-david"></i>
+                        <p>Sikh Gurudwara<br>on the Lakeshore</p>
+                    </div>
+                    <div class="rewalsar-highlight-card">
+                        <i class="fas fa-fish"></i>
+                        <p>Sacred Floating<br>Islands &amp; Carp</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sacred Triangle -->
+        <div class="fade-in" style="margin-top:60px;">
+            <div style="background:rgba(212,175,55,0.05); border:1px solid rgba(212,175,55,0.2); padding:40px; text-align:center;">
+                <div style="font-family:'Cinzel',serif; color:var(--gold); font-size:1.1rem; margin-bottom:25px;">The Sacred Triangle: Connecting Our Three Field Sites</div>
+                <div style="display:flex; justify-content:center; align-items:center; gap:20px; flex-wrap:wrap;">
+                    <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(212,175,55,0.2); padding:25px 20px; text-align:center; min-width:180px;">
+                        <div style="font-size:1.5rem; color:var(--gold); margin-bottom:8px;">&#9312;</div>
+                        <div style="font-family:'Cinzel',serif; color:var(--cream); font-size:0.95rem; margin-bottom:5px;">Mandi</div>
+                        <div style="font-family:'Lato',sans-serif; color:rgba(253,246,227,0.5); font-size:0.7rem;">Temple Traditions<br>&amp; Kuan Rani</div>
+                    </div>
+                    <div style="color:var(--gold); font-size:1.5rem;">⟶</div>
+                    <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(212,175,55,0.2); padding:25px 20px; text-align:center; min-width:180px;">
+                        <div style="font-size:1.5rem; color:var(--gold); margin-bottom:8px;">&#9313;</div>
+                        <div style="font-family:'Cinzel',serif; color:var(--cream); font-size:0.95rem; margin-bottom:5px;">Dharamshala</div>
+                        <div style="font-family:'Lato',sans-serif; color:rgba(253,246,227,0.5); font-size:0.7rem;">Tibetan Culture<br>&amp; Sowa-Rigpa</div>
+                    </div>
+                    <div style="color:var(--gold); font-size:1.5rem;">⟶</div>
+                    <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(212,175,55,0.35); padding:25px 20px; text-align:center; min-width:180px;">
+                        <div style="font-size:1.5rem; color:var(--gold); margin-bottom:8px;">&#9314;</div>
+                        <div style="font-family:'Cinzel',serif; color:var(--cream); font-size:0.95rem; margin-bottom:5px;">Rewalsar</div>
+                        <div style="font-family:'Lato',sans-serif; color:rgba(253,246,227,0.5); font-size:0.7rem;">Syncretic Convergence<br>of All Traditions</div>
+                    </div>
+                </div>
+                <p style="font-family:'Cormorant Garamond',serif; font-size:0.95rem; color:rgba(253,246,227,0.65); margin-top:25px; max-width:700px; margin-left:auto; margin-right:auto; line-height:1.8; font-style:italic;">
+                    Rewalsar serves as the profound culmination of our three-site journey — where the temple legends of Mandi (Kuan Rani), the Tibetan Buddhist traditions of Dharamshala, and the syncretic sacred landscape all converge in one living pilgrimage site.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== FINDINGS ==================== -->
+<section class="findings-section" id="findings">
+    <div class="container">
+        <div class="section-header fade-in">
+            <span class="section-tag" style="color:var(--gold);">Data Analysis — All Three Sites</span>
+            <h2 class="section-title" style="color:var(--cream);">Key Findings &amp; Observations</h2>
+            <p class="section-subtitle" style="color:rgba(253,246,227,0.7);">Thematic synthesis from field interviews, direct observation, and community interaction across Mandi, Dharamshala &amp; Rewalsar</p>
+            <div class="section-ornament"><div class="ornament-line"></div><div class="ornament-diamond"></div><div class="ornament-line"></div></div>
+        </div>
+        <div class="findings-grid">
+            <div class="finding-card fade-in">
+                <div class="finding-number">01</div>
+                <h4>Oral Knowledge in Critical Decline</h4>
+                <p>The most urgent finding across all three sites is the rapid erosion of oral knowledge systems. Traditional priests, Amchis, and elders hold complex ritual knowledge, medical formulations, and mythological narratives that are not systematically recorded. As senior knowledge-holders pass away without successors, entire bodies of living knowledge disappear irreversibly. Younger generations, increasingly urban and digitally connected, show limited interest in traditional apprenticeship.</p>
+            </div>
+            <div class="finding-card fade-in">
+                <div class="finding-number">02</div>
+                <h4>Profound Syncretic Traditions Across All Sites</h4>
+                <p>All three field sites demonstrate remarkable inter-religious synergy. The Kuan Rani Temple in Mandi (Site 1) and Rewalsar Lake (Site 3) are both sacred to Tibetan Buddhists and Hindus, directly linked through the Mandarava–Padmasambhava legend. The Trilokinath Temple synthesizes Shaivism and Vaishnavism. Rewalsar additionally includes a Sikh Gurudwara — making it a unique three-faith convergence point requiring cross-community archiving approaches.</p>
+            </div>
+            <div class="finding-card fade-in">
+                <div class="finding-number">03</div>
+                <h4>Sowa-Rigpa Under Pressure</h4>
+                <p>Traditional Tibetan medicine (Sowa-Rigpa) practiced at Men-Tsee-Khang (Site 2) remains the primary healthcare preference for chronic conditions. However, knowledge of high-altitude herb identification, collection seasonality, and purification of mineral ingredients is concentrated among a small number of trained Amchis. The medicinal herb supply chain from the Himalayan highlands is increasingly disrupted by climate change and restricted collection access.</p>
+            </div>
+            <div class="finding-card fade-in">
+                <div class="finding-number">04</div>
+                <h4>Architectural Heritage at Risk — Site 1</h4>
+                <p>While ASI protection has helped conserve major temples like Panchvaktra and Trilokinath, a significant number of smaller shrines and rural village temples remain unprotected and unmapped. Earthquake damage (two of five subsidiary shrines at Trilokinath were destroyed) and neglect continue to erode architectural heritage. The intricate Meenakari work at Tarna Devi Temple and the Tankari script inscriptions at Trilokinath require specialized conservation urgently.</p>
+            </div>
+            <div class="finding-card fade-in">
+                <div class="finding-number">05</div>
+                <h4>Rewalsar — The Living Syncretic Pilgrimage</h4>
+                <p>Our third field visit to Rewalsar (Tso Pema) revealed a uniquely resilient form of cultural heritage — the shared pilgrimage tradition. Despite modernization pressures, Buddhists, Hindus, and Sikhs continue to co-exist and perform their respective rituals at the lake. The sacred carp-feeding ritual and circumambulation of the lake by multiple faith traditions represent a form of intangible heritage that is self-sustaining but needs formal documentation before demographic shifts alter its character.</p>
+            </div>
+            <div class="finding-card fade-in">
+                <div class="finding-number">06</div>
+                <h4>Generational Gap in Cultural Transmission</h4>
+                <p>A clear generational divide exists across all three sites. In the Tibetan community, elders follow Guru's guidance with deep faith while modern-educated youth approach traditions analytically and selectively. In Mandi, young people participate in Shivratri but have limited knowledge of iconographic traditions. The Dalai Lama's encouragement of analytical engagement is helping bridge this gap — but structural transmission mechanisms are increasingly difficult to sustain in urban contexts.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== QUESTIONNAIRE ==================== -->
+<section class="questionnaire-section" id="questionnaire">
+    <div class="container">
+        <div class="section-header fade-in">
+            <span class="section-tag">Research Instrument</span>
+            <h2 class="section-title">Fieldwork Questionnaire</h2>
+            <p class="section-subtitle">Structured interview guide deployed across all three field sites — Mandi, Dharamshala &amp; Rewalsar</p>
+            <div class="section-ornament"><div class="ornament-line"></div><div class="ornament-diamond"></div><div class="ornament-line"></div></div>
+        </div>
+        <div class="q-accordion fade-in">
+            <div class="q-item">
+                <div class="q-header active" onclick="toggleQ(this)">
+                    <h4>Section 1 — Basic Information</h4>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="q-body open">
+                    <ul>
+                        <li>Name of the Monastery / Library / Temple</li>
+                        <li>Location &amp; Year of Establishment</li>
+                        <li>Interviewee Name &amp; Role (Monk / Librarian / Scholar / Caretaker / Resident)</li>
+                        <li>Community Served</li>
+                        <li>Languages used in the monastery</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="q-item">
+                <div class="q-header" onclick="toggleQ(this)">
+                    <h4>Section 2 — Folk Culture &amp; Community Life</h4>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="q-body">
+                    <ul>
+                        <li>Role of monastery in preserving Tibetan culture</li>
+                        <li>Traditional customs still practiced</li>
+                        <li>How folk culture is passed to younger generations</li>
+                        <li>Mixing of Himachali &amp; Tibetan traditions</li>
+                        <li>Community cultural activities</li>
+                        <li>Storytelling traditions or oral histories</li>
+                        <li>Importance of music, dance, folk performance</li>
+                        <li>Monk training in traditional arts</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="q-item">
+                <div class="q-header" onclick="toggleQ(this)">
+                    <h4>Section 3 — Festivals &amp; Ritual Practices</h4>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="q-body">
+                    <ul>
+                        <li>Annual festivals celebrated</li>
+                        <li>Cultural significance of these festivals</li>
+                        <li>Unique rituals specific to this monastery / temple / site</li>
+                        <li>Role of masks, costumes, and sacred objects</li>
+                        <li>Cham dance or ritual dance performance</li>
+                        <li>Transmission of rituals across generations</li>
+                        <li>Local villager involvement in festivals</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="q-item">
+                <div class="q-header" onclick="toggleQ(this)">
+                    <h4>Section 4 — Archiving &amp; Preservation Methods</h4>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="q-body">
+                    <ul>
+                        <li>How manuscripts are physically stored</li>
+                        <li>Environmental conditions maintained</li>
+                        <li>Ongoing digitization projects</li>
+                        <li>Challenges in preservation</li>
+                        <li>Researcher accessibility policies</li>
+                        <li>Collaboration with universities / government</li>
+                        <li>Traditional preservation techniques used</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="q-item">
+                <div class="q-header" onclick="toggleQ(this)">
+                    <h4>Section 5 — Folk Beliefs &amp; Intangible Heritage</h4>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="q-body">
+                    <ul>
+                        <li>Local myths or legends associated with the site</li>
+                        <li>Folk beliefs guiding daily monastery / temple life</li>
+                        <li>Traditional healing or herbal practices followed</li>
+                        <li>Role of astrology or divination in community decisions</li>
+                        <li>Sacred symbols or motifs commonly used</li>
+                        <li>Oral chants or folk prayers unique to this place</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="q-item">
+                <div class="q-header" onclick="toggleQ(this)">
+                    <h4>Section 6 — Transmission of Culture</h4>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="q-body">
+                    <ul>
+                        <li>How cultural knowledge is taught to young monks / devotees</li>
+                        <li>Workshops or cultural education programs</li>
+                        <li>Whether elders or scholars record oral traditions</li>
+                        <li>Role of modern technology in cultural transmission</li>
+                        <li>Youth interest in continuing these traditions</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="q-item">
+                <div class="q-header" onclick="toggleQ(this)">
+                    <h4>Section 7 — Modern Challenges</h4>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="q-body">
+                    <ul>
+                        <li>Threats to folk culture today</li>
+                        <li>Impact of tourism on cultural practices</li>
+                        <li>Influence of modernization / globalization</li>
+                        <li>Whether traditional practices are declining</li>
+                        <li>Support needed for cultural preservation</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== SURVEY / TABLES ==================== -->
+<section class="survey-section" id="survey">
+    <div class="container">
+        <div class="section-header fade-in">
+            <span class="section-tag">Field Observations — All Three Sites</span>
+            <h2 class="section-title">Survey &amp; Observation Tables</h2>
+            <p class="section-subtitle">Structured field observations compiled from temple visits, monastery interviews, and the Rewalsar pilgrimage site</p>
+            <div class="section-ornament"><div class="ornament-line"></div><div class="ornament-diamond"></div><div class="ornament-line"></div></div>
+        </div>
+
+        <!-- Table I -->
+        <div class="fade-in" style="margin-bottom:60px;">
+            <h3 style="font-family:'Cinzel',serif; color:var(--primary); margin-bottom:20px; font-size:1.1rem;">
+                Table I — Temple Architectural and Heritage Features: Mandi Field Observations (Site Visit 1)
+            </h3>
+            <div class="table-container">
+                <table class="survey-table">
+                    <thead>
+                        <tr>
+                            <th>Temple</th>
+                            <th>Year Built</th>
+                            <th>Architectural Style</th>
+                            <th>Primary Deity</th>
+                            <th>ASI Protected</th>
+                            <th>Unique Feature</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Panchvaktra Mahadev</td>
+                            <td>16th Century CE</td>
+                            <td>Shikhara</td>
+                            <td>Panchmukhi Shiva</td>
+                            <td class="score-high">Yes (1980s)</td>
+                            <td>Five-faced Shivalinga; Ardhanarishvara sculpture</td>
+                        </tr>
+                        <tr>
+                            <td>Trilokinath</td>
+                            <td>1520 CE</td>
+                            <td>Shikhara</td>
+                            <td>Three-faced Shiva</td>
+                            <td class="score-high">Yes</td>
+                            <td>Tankari script inscription; Jeev Pratishtha ritual</td>
+                        </tr>
+                        <tr>
+                            <td>Bhootnath</td>
+                            <td>1527 CE</td>
+                            <td>Nagara / Shikhara</td>
+                            <td>Shivalinga</td>
+                            <td class="score-mid">Partial</td>
+                            <td>International Shivratri Festival epicenter</td>
+                        </tr>
+                        <tr>
+                            <td>Tarna Devi</td>
+                            <td>17th Century CE</td>
+                            <td>Hilltop Shrine</td>
+                            <td>Shyama Kali / Tara</td>
+                            <td class="score-low">No</td>
+                            <td>Meenakari ceiling; victory monument significance</td>
+                        </tr>
+                        <tr>
+                            <td>Neelkanth Mahadev</td>
+                            <td>Medieval Era</td>
+                            <td>Shikhara (East-facing)</td>
+                            <td>Neelkanth Shiva</td>
+                            <td class="score-low">No</td>
+                            <td>Royal stepwell "Pehru Ri Baay"; "Jaichu Naun" tank</td>
+                        </tr>
+                        <tr>
+                            <td>Bhimakali</td>
+                            <td>1660–1666 CE</td>
+                            <td>Hilltop Mound Shrine</td>
+                            <td>Goddess Bhimakali (Pindi)</td>
+                            <td class="score-low">No</td>
+                            <td>Miraculous river retrieval legend; Kuldevi temple</td>
+                        </tr>
+                        <tr>
+                            <td>Mata Kuan Rani</td>
+                            <td>Traditional</td>
+                            <td>Slate-roofed well shrine</td>
+                            <td>Princess Mandarava</td>
+                            <td class="score-low">No</td>
+                            <td>Sacred to both Buddhists &amp; Hindus; linked to Rewalsar (Site 3)</td>
+                        </tr>
+                        <tr>
+                            <td>Shambhu Ghat</td>
+                            <td>Traditional</td>
+                            <td>Open-air Ghat</td>
+                            <td>Shivalinga (natural)</td>
+                            <td class="score-low">No</td>
+                            <td>Ritual bathing site on sacred Beas River</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="table-caption">Table I: Summary of temple field observations at Mandi (Site Visit 1). ASI = Archaeological Survey of India.</p>
+            </div>
+        </div>
+
+        <!-- Table II -->
+        <div class="fade-in">
+            <h3 style="font-family:'Cinzel',serif; color:var(--primary); margin-bottom:20px; font-size:1.1rem;">
+                Table II — Cultural Practices &amp; Site-wise Heritage Observations (All Three Field Visits)
+            </h3>
+            <div class="table-container">
+                <table class="survey-table">
+                    <thead>
+                        <tr>
+                            <th>Practice / Domain</th>
+                            <th>Site</th>
+                            <th>Specific Element</th>
+                            <th>Status</th>
+                            <th>Transmission Risk</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Traditional Medicine (Sowa-Rigpa)</td>
+                            <td style="color:var(--accent); font-weight:600;">Site 2</td>
+                            <td>Mani Rilbu, Shindeem, Pulse Diagnosis, Herbal Remedies</td>
+                            <td class="score-high">Active — Men-Tsee-Khang</td>
+                            <td class="score-mid">Medium</td>
+                        </tr>
+                        <tr>
+                            <td>Life Cycle — Naming &amp; Marriage</td>
+                            <td style="color:var(--accent); font-weight:600;">Site 2</td>
+                            <td>Guru-given name; 3-day marriage; Pangden; Lama presiding</td>
+                            <td class="score-mid">Partially modified</td>
+                            <td class="score-mid">Medium</td>
+                        </tr>
+                        <tr>
+                            <td>Death &amp; 49-Day Rituals</td>
+                            <td style="color:var(--accent); font-weight:600;">Site 2</td>
+                            <td>49-day prayers; Sattu offering; soul-body 3-day belief</td>
+                            <td class="score-high">Active</td>
+                            <td class="score-high">Low</td>
+                        </tr>
+                        <tr>
+                            <td>Monastic Education</td>
+                            <td style="color:var(--accent); font-weight:600;">Site 2</td>
+                            <td>Prayer schedule; Buddhist philosophy + modern subjects</td>
+                            <td class="score-high">Active</td>
+                            <td class="score-high">Low</td>
+                        </tr>
+                        <tr>
+                            <td>Temple Traditions &amp; Ritual</td>
+                            <td style="color:#8B3A0A; font-weight:600;">Site 1</td>
+                            <td>Daily puja; Shivratri Festival; Panchamrit bathing rituals</td>
+                            <td class="score-high">Active</td>
+                            <td class="score-mid">Medium</td>
+                        </tr>
+                        <tr>
+                            <td>Protection Rituals &amp; Mantras</td>
+                            <td style="color:var(--accent); font-weight:600;">Site 2</td>
+                            <td>Kala Tika, Tunga amulet, Green Tara &amp; Medicine Buddha mantras</td>
+                            <td class="score-mid">Partially practiced</td>
+                            <td class="score-mid">Medium-High</td>
+                        </tr>
+                        <tr>
+                            <td>Inter-faith Pilgrimage</td>
+                            <td style="color:#1A7A3A; font-weight:600;">Site 3</td>
+                            <td>Buddhist circumambulation; Hindu rituals; Sikh prayers; sacred carp-feeding</td>
+                            <td class="score-high">Active</td>
+                            <td class="score-mid">Medium</td>
+                        </tr>
+                        <tr>
+                            <td>Oral Legend Traditions</td>
+                            <td style="color:#1A7A3A; font-weight:600;">Sites 1 &amp; 3</td>
+                            <td>Mandarava–Padmasambhava legend; Kuan Rani (Site 1) &amp; Rewalsar (Site 3)</td>
+                            <td class="score-mid">Partially documented</td>
+                            <td class="score-mid">Medium-High</td>
+                        </tr>
+                        <tr>
+                            <td>Sacred Floating Islands &amp; Carp</td>
+                            <td style="color:#1A7A3A; font-weight:600;">Site 3</td>
+                            <td>Floating reed islands; sacred carp; lake circumambulation by all faiths</td>
+                            <td class="score-high">Active</td>
+                            <td class="score-mid">Medium</td>
+                        </tr>
+                        <tr>
+                            <td>Tibetan Festivals</td>
+                            <td style="color:var(--accent); font-weight:600;">Site 2</td>
+                            <td>Losar, Monlam Puja, Saga Dawa, Gaden Ngamchoe</td>
+                            <td class="score-high">Active</td>
+                            <td class="score-high">Low</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="table-caption">Table II: Cultural practices and heritage observations across all three field sites. Site 1 = Mandi, Site 2 = Dharamshala/McLeodganj, Site 3 = Rewalsar. Transmission Risk: Low = practiced across generations; Medium = declining youth participation; Medium-High = primarily older generation.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== RECOMMENDATIONS ==================== -->
+<section class="recommendations-section" id="recommendations">
+    <div class="container">
+        <div class="section-header fade-in">
+            <span class="section-tag">Future Work — All Three Sites</span>
+            <h2 class="section-title">Recommendations</h2>
+            <p class="section-subtitle">Actionable pathways for preserving the living cultural heritage of Mandi, Dharamshala &amp; Rewalsar</p>
+            <div class="section-ornament"><div class="ornament-line"></div><div class="ornament-diamond"></div><div class="ornament-line"></div></div>
+        </div>
+        <div class="rec-grid">
+            <div class="rec-card fade-in">
+                <div class="rec-icon"><i class="fas fa-database"></i></div>
+                <h4>Interoperable Digital Archive</h4>
+                <p>Establish a centralized, open-access digital repository for Himachali and Tibetan cultural heritage following international standards. IIT Mandi, in collaboration with Men-Tsee-Khang, ASI, and the Rewalsar monastery council, is ideally positioned to lead this initiative spanning all three sites.</p>
+            </div>
+            <div class="rec-card fade-in">
+                <div class="rec-icon"><i class="fas fa-microphone-alt"></i></div>
+                <h4>Oral Knowledge Recording Program</h4>
+                <p>Launch a systematic oral history documentation program targeting temple priests (Site 1), Amchis and monks (Site 2), and pilgrimage guides and faith community leaders (Site 3). Prioritize recording the Mandarava legend traditions linking Mandi and Rewalsar.</p>
+            </div>
+            <div class="rec-card fade-in">
+                <div class="rec-icon"><i class="fas fa-university"></i></div>
+                <h4>Academic–Community Partnerships</h4>
+                <p>Formalize MoUs between IIT Mandi, Men-Tsee-Khang, the HP State Museum, monastery libraries, and the inter-faith trust at Rewalsar. Annual ISTP student documentation cycles across all three sites would ensure continuity of archiving efforts.</p>
+            </div>
+            <div class="rec-card fade-in">
+                <div class="rec-icon"><i class="fas fa-scroll"></i></div>
+                <h4>Manuscript Conservation Labs</h4>
+                <p>Establish dedicated conservation labs for the physical stabilization and digitization of manuscripts — particularly the Tankari-script inscriptions at Trilokinath (Site 1), Tibetan Buddhist texts at McLeodganj (Site 2), and oral legend documentation at Rewalsar (Site 3).</p>
+            </div>
+            <div class="rec-card fade-in">
+                <div class="rec-icon"><i class="fas fa-landmark"></i></div>
+                <h4>Policy Advocacy for ASI Coverage</h4>
+                <p>Advocate for extending ASI protection to currently unprotected sites including Bhimakali Temple, Tarna Devi Temple, the Neelkanth stepwell complex (all Site 1), and the lakeside heritage structures at Rewalsar (Site 3). Develop a comprehensive heritage mapping survey of Mandi's 81+ temples.</p>
+            </div>
+            <div class="rec-card fade-in">
+                <div class="rec-icon"><i class="fas fa-users"></i></div>
+                <h4>Inter-faith Cultural Education</h4>
+                <p>Design community-level cultural education workshops drawing on the syncretic model demonstrated at Rewalsar — where Buddhist, Hindu, and Sikh traditions co-exist. Use the three-site narrative (Mandi → Dharamshala → Rewalsar) as an educational framework connecting distinct but interlinked heritage streams.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== CONCLUSION ==================== -->
+<section class="conclusion-section" id="conclusion">
+    <div class="container">
+        <div class="conclusion-inner fade-in">
+            <span class="section-tag" style="color:var(--gold);">Conclusion</span>
+            <h2>Preserving the Living Memory of the Himalayas</h2>
+            <p>The cultural heritage of Himachal Pradesh — spanning the Shaiva temple traditions of Mandi (Site Visit 1), the Tibetan Buddhist practices of Dharamshala and McLeodganj (Site Visit 2), and the profound inter-faith sacred landscape of Rewalsar (Site Visit 3) — represents a convergence of civilizational knowledge streams of immeasurable depth and continuing vitality.</p>
+            <p>Our three-site field study traced a remarkable cultural arc: from the stone inscriptions of Trilokinath and the five-faced Shiva of Panchvaktra Temple in Mandi, to the morning prayers and Sowa-Rigpa healing traditions of McLeodganj's monasteries, to the sacred lotus lake of Rewalsar where the legend of Princess Mandarava — first encountered at the Kuan Rani Temple in Mandi — finds its miraculous culmination. These three sites form an interconnected sacred geography that has shaped human life, devotion, and knowledge in this Himalayan landscape for over five hundred years.</p>
+            <div class="conclusion-quote">
+                <p>"Culture is not a relic of the past to be stored in a museum — it is a living conversation between generations. What we archive today, we gift to the future."</p>
+                <cite>— Field Reflection, ISTP Cultural Heritage Project, IIT Mandi 2025-26 · Mandi · Dharamshala · Rewalsar</cite>
+            </div>
+            <p>This heritage faces a critical inflection point. The generation that carries this knowledge in embodied, living form is aging, while the structural mechanisms for transmission are under sustained pressure from modernization and displacement. The window for systematic archiving across all three sites is narrowing, and urgent, collaborative, cross-community action is required. We hope this report serves as both a document of record and a call to sustained, collaborative action.</p>
+            <div class="section-ornament" style="justify-content:center; margin-top:40px;">
+                <div class="ornament-line" style="background:var(--gold);"></div>
+                <div class="ornament-diamond" style="background:var(--gold);"></div>
+                <div class="ornament-line" style="background:var(--gold);"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>☸ ISTP Cultural Heritage Project</h3>
+                <p>An Interactive Socio-Technical Practicum conducted by students of IIT Mandi across three field sites — Mandi (Choti Kashi), Dharamshala/McLeodganj, and Rewalsar (Tso Pema) — documenting and advocating for the preservation of the living cultural heritage of the Himalayan region.</p>
+                <p style="margin-top:15px; font-size:0.8rem; color:rgba(253,246,227,0.4);">IIT Mandi | Academic Year 2024–25</p>
+            </div>
+            <div class="footer-links">
+                <h4>Sections</h4>
+                <ul>
+                    <li><a href="#abstract">Abstract</a></li>
+                    <li><a href="#locations">Three Field Locations</a></li>
+                    <li><a href="#temples">Temples of Mandi</a></li>
+                    <li><a href="#tibetan">Tibetan Culture</a></li>
+                    <li><a href="#medicine">Traditional Medicine</a></li>
+                    <li><a href="#rewalsar">Rewalsar — Site Visit 3</a></li>
+                    <li><a href="#findings">Findings</a></li>
+                    <li><a href="#survey">Survey Data</a></li>
+                    <li><a href="#recommendations">Recommendations</a></li>
+                    <li><a href="#conclusion">Conclusion</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Field Sites</h4>
+                <ul>
+                    <li><a href="#temples">&#9312; Mandi — Choti Kashi</a></li>
+                    <li><a href="#temples">Panchvaktra Temple</a></li>
+                    <li><a href="#temples">Trilokinath Temple</a></li>
+                    <li><a href="#temples">Bhootnath Temple</a></li>
+                    <li><a href="#temples">Tarna Devi Temple</a></li>
+                    <li><a href="#tibetan">&#9313; Dharamshala</a></li>
+                    <li><a href="#medicine">Men-Tsee-Khang</a></li>
+                    <li><a href="#rewalsar">&#9314; Rewalsar — Tso Pema</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 ISTP Group — IIT Mandi. All rights reserved. For academic use only.</p>
+            <div class="footer-logo-mark">
+                <span>IIT MANDI</span>
+                <span style="color:rgba(212,175,55,0.3);">|</span>
+                <span>ISTP 2024–25</span>
+                <span style="color:rgba(212,175,55,0.3);">|</span>
+                <span>3 FIELD SITES</span>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Loader
+    window.addEventListener('load', () => {
+        setTimeout(() => document.getElementById('loader').classList.add('hidden'), 1200);
+    });
+
+    // Particles
+    const pc = document.getElementById('particles');
+    for (let i = 0; i < 25; i++) {
+        const p = document.createElement('div');
+        p.classList.add('particle');
+        const s = Math.random() * 8 + 3;
+        p.style.cssText = `width:${s}px;height:${s}px;left:${Math.random()*100}%;animation-duration:${Math.random()*15+10}s;animation-delay:${Math.random()*10}s;`;
+        pc.appendChild(p);
+    }
+
+    // Hamburger
+    const hb = document.getElementById('hamburger');
+    const mm = document.getElementById('mobileMenu');
+    hb.addEventListener('click', () => mm.classList.toggle('active'));
+    mm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mm.classList.remove('active')));
+
+    // Temple tabs
+    function showTemple(id, btn) {
+        document.querySelectorAll('.temple-content').forEach(c => c.classList.remove('active'));
+        document.querySelectorAll('.temple-tab').forEach(t => t.classList.remove('active'));
+        document.getElementById('temple-' + id).classList.add('active');
+        btn.classList.add('active');
+        document.querySelectorAll('#temple-' + id + ' .slide-left, #temple-' + id + ' .slide-right').forEach(el => {
+            el.classList.remove('visible');
+            setTimeout(() => el.classList.add('visible'), 50);
+        });
+    }
+
+    // Accordion
+    function toggleQ(header) {
+        const body = header.nextElementSibling;
+        const isOpen = body.classList.contains('open');
+        document.querySelectorAll('.q-body').forEach(b => b.classList.remove('open'));
+        document.querySelectorAll('.q-header').forEach(h => h.classList.remove('active'));
+        if (!isOpen) { body.classList.add('open'); header.classList.add('active'); }
+    }
+
+    // Scroll to top
+    const stb = document.getElementById('scrollTop');
+    window.addEventListener('scroll', () => stb.classList.toggle('visible', window.scrollY > 400));
+    stb.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // Intersection Observer
+    const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in, .slide-left, .slide-right').forEach(el => obs.observe(el));
+
+    // Initial temple
+    setTimeout(() => {
+        document.querySelectorAll('#temple-panchvaktra .slide-left, #temple-panchvaktra .slide-right').forEach(el => el.classList.add('visible'));
+    }, 200);
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', function(e) {
+            e.preventDefault();
+            const t = document.querySelector(this.getAttribute('href'));
+            if (t) window.scrollTo({ top: t.getBoundingClientRect().top + window.pageYOffset - 80, behavior: 'smooth' });
+        });
+    });
+
+    // Navbar active
+    const secs = document.querySelectorAll('section[id]');
+    window.addEventListener('scroll', () => {
+        let cur = '';
+        secs.forEach(s => { if (window.pageYOffset >= s.offsetTop - 100) cur = s.getAttribute('id'); });
+        document.querySelectorAll('.nav-links a').forEach(a => {
+            a.style.color = '';
+            if (a.getAttribute('href') === '#' + cur) a.style.color = 'var(--gold)';
+        });
+    });
+</script>
+</body>
+</html>
